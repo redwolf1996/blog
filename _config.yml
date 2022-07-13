@@ -1,0 +1,8 @@
+title: 虚空之遗
+description: 让我们陷入困境的不是无知，而是看似正确的谬误论断。-- 马克·吐温
+google_analytics: 
+show_downloads: true
+theme: jekyll-theme-tactile
+
+gems:
+  - jekyll-mentions
