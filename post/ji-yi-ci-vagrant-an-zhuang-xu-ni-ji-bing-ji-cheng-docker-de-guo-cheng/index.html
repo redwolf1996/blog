@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>记一次vagrant安装虚拟机并集成docker的过程 | Lost And Found</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.shaoyunxiang.cn/favicon.ico?v=1678686332981">
+<link rel="stylesheet" href="https://blog.shaoyunxiang.cn/styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="
+安装virtualbox
+安装vagrant
+去vagrant官网下载box
+vagrant add box &amp;&amp; vagrant up
+vagrant ssh
+yum update升级到centos7.9和内核3.10
+..." />
+    <meta name="keywords" content="VM" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.shaoyunxiang.cn">
+        <img src="https://blog.shaoyunxiang.cn/images/avatar.png?v=1678686332981" class="site-logo">
+        <h1 class="site-title">Lost And Found</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      <span style="font-size:18px;font-weight:bold;text-shadow: black 0.1em 0.1em 0.2em">好的想象力比知识更重要</span>
+<div style="padding-top:4px">京ICP备16054061号</div>
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.shaoyunxiang.cn/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">记一次vagrant安装虚拟机并集成docker的过程</h2>
+            <div class="post-date">2022-08-02</div>
+            
+            <div class="post-content" v-pre>
+              <ul>
+<li>安装virtualbox</li>
+<li>安装vagrant</li>
+<li>去vagrant官网下载box</li>
+<li>vagrant add box &amp;&amp; vagrant up</li>
+<li>vagrant ssh</li>
+<li>yum update升级到centos7.9和内核3.10</li>
+<li>去runoob看安装docker的步骤并安装好</li>
+<li>重新用vagrant打包成自己的box</li>
+</ul>
+<ol>
+<li>重新运行新的box，报错，注意打包前要在系统里更改登录方式允许账号密码登录</li>
+<li>更改 /etc/ssh/sshd_config里面的 PasswordAuthentication 为 yes</li>
+<li>Vagrantfile中增加 config.ssh.username=&quot;vagrant&quot;  config.ssh.password=&quot;vagrant&quot; 改为账号密码登录</li>
+</ol>
+<ul>
+<li>vagrant reload 此时会报错 /sbin/mount.vboxsf: mounting failed with the error: Invalid argument：</li>
+</ul>
+<ol start="4">
+<li>安装virtualbox官方的extention_pack</li>
+<li>vagrant plugin install vagrant-vbguest &amp;&amp; vagrant vbguest 等待一会而安装完成</li>
+<li>在vagrant ssh大功告成</li>
+<li>在Vagrantfile中设置私有网络如192.168.56.10 可以互相固定ip ping通</li>
+<li>使用ruby脚本编写Vagrantfile创建多个带docker容器的引擎 即可模拟多服务器集群</li>
+<li>大功告成~</li>
+</ol>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://blog.shaoyunxiang.cn/tag/9LxddsGcu/" class="tag">
+                    VM
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.shaoyunxiang.cn/post/dui-di-dai-ma-ling-dai-ma-chan-pin-de-yi-xie-kan-fa/">
+                  <h3 class="post-title">
+                    对低代码、零代码产品的一些看法
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>web前端 | Lost And Found</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.shaoyunxiang.cn/favicon.ico?v=1678686332981">
+<link rel="stylesheet" href="https://blog.shaoyunxiang.cn/styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="&lt;span style=&#34;font-size:18px;font-weight:bold;text-shadow: black 0.1em 0.1em 0.2em&#34;&gt;好的想象力比知识更重要&lt;/span&gt;
+&lt;div style=&#34;padding-top:4px&#34;&gt;京ICP备16054061号&lt;/div&gt;">
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.shaoyunxiang.cn">
+        <img src="https://blog.shaoyunxiang.cn/images/avatar.png?v=1678686332981" class="site-logo">
+        <h1 class="site-title">Lost And Found</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      <span style="font-size:18px;font-weight:bold;text-shadow: black 0.1em 0.1em 0.2em">好的想象力比知识更重要</span>
+<div style="padding-top:4px">京ICP备16054061号</div>
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.shaoyunxiang.cn/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <h2 class="current-tag">标签: web前端</h2>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://blog.shaoyunxiang.cn/post/shi-tu-dian-fu-javascript-sheng-tai-qin-shen-shi-yong-xin-js-yun-xing-shi-bun-hou-wo-jue-de-wei-lai-ke-qi/">
+                  <h2 class="post-title">试图颠覆 JavaScript 生态？亲身试用新 JS 运行时 Bun 后，我觉得未来可期</h2>
+                </a>
+                <div class="post-date">
+                  2022-08-05
+                </div>
+                <div class="post-abstract">
+                  <p>作者 | Forrest Allison</p>
+<p>翻译 | 核子可乐</p>
+
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://blog.shaoyunxiang.cn/post/vue-jian-ce-shu-zu-bian-hua-de-wen-ti/">
+                  <h2 class="post-title">Vue监测数组变化的问题</h2>
+                </a>
+                <div class="post-date">
+                  2022-07-19
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://blog.shaoyunxiang.cn/post/vue2-zhong-watch-he-computed-yi-tong/">
+                  <h2 class="post-title">Vue2中watch和computed异同</h2>
+                </a>
+                <div class="post-date">
+                  2022-07-19
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://blog.shaoyunxiang.cn/post/zhi-hu-zen-me-cai-neng-you-you-yu-xi-yi-ban-qiang-gai-zen-me-xue-xi/">
+                  <h2 class="post-title">【知乎】怎么才能有尤雨溪一半强，该怎么学习？</h2>
+                </a>
+                <div class="post-date">
+                  2022-07-18
+                </div>
+                <div class="post-abstract">
+                  <p>尤雨溪<br>
+​<br>
+前端开发话题下的优秀答主<br>
+HcySunYang<br>
+等 5,616 人赞同了该回答<br>
+这种问题问出来肯定招黑子，所以首先明确一点：不要捧杀我，比我还厉害的人多的是。（参考 尤雨溪：关于程序员的个人崇拜）</p>
+<p>这个问题的一个有意思的点是如何定义 “强”。俗话说文无第一，程序员的 “强” 不像格斗那样打一场就见分晓，每个人对于这个字的定义可能都不一样。公司职级？GitHub stars？npm 下载量？赚钱多少？显然这都不应该是程序员 “强” 的定义。</p>
+<p>我更愿意把 “强” 理解为 “制造 impact 的能力”，也就是你能通过你的代码产生多大的影响力。大部分觉得我 “强” 的人，其实更多的是出于 Vue 的影响力产生这样的感觉。如果你的目标是要做出像 Vue 这样的项目，实话实说，这个需要机遇。把 7 年前的我穿越到今天，我也不能保证能再做出一个 Vue 这种级别的项目。为什么呢？因为影响力的本质来自于解决问题。跟科研一样，如果一个领域的问题已经被解决得差不多了，那么在这个领域制造 impact 的难度就高了很多。在恰当的时机解决了恰当的问题，会产生很大的影响力，但问题总是处在一个不断被发现和解决的动态平衡中，你能否发现那个值得解决，同时你也有能力解决的问题，需要一定程度的机遇。</p>
+<p>这里明确一个大前提：创造影响力的机会总是存在，但受一定的时代进程的影响。这里并不是说能不能成完全靠运气：作为个人想要最大化创造影响力的机会，最重要的是两点：</p>
+<p>会发现问题，并且判断出什么问题值得解决。<br>
+具备高质量解决某个领域问题的技术水准。<br>
+在大前端 / js 语境下 (2) 大致属于 “努力就能做到” 的范畴 —— 说实话前端没有什么艰深到必须拼智商的东西，明确了需求的前提下，大部分东西都能做出来。当然我这么说可能过于简略了，如果你是一个新人，肯定是要先好好打基础，多看多研究，模仿着造几个轮子，开源那么一两个小库。代码细节上还是有很多经验需要靠时间去积累的。</p>
+<p>当你具备了 (2) 以后，更难的是 (1)，也就是搞明白力气应该花在哪里。具备 (2) 的人远远多于 (1) —— 但最终做出影响力的人必然是兼具 (1) 和 (2)。</p>
+<p>有些人可能有 (2) 的能力，但是在问题的发现上完全以自己的偏好或者是技术兴趣为主，那么即使投入很多，也可能产生不了太大的影响力。程序员很容易对实现过程产生兴奋感，但这也恰恰是个很常见的陷阱。因为想实现一个东西，把它做成了一套方案，但其实这个方案可能要么根本没有受众，或是这个问题早就被别人更好地解决了...</p>
+<p>这里明确一下，在一个小众领域深耕活的很滋润也不是不可能，不想迎合大众，就是想单纯享受钻研技术的乐趣也是一个合理的选择。但这种前提下也就别抱怨影响力做不大。想要影响力大，你就必须思考 “什么才是值得解决的问题”。</p>
+<p>发布于 2021-04-27 22:57</p>
+
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://blog.shaoyunxiang.cn/post/zhi-hu-ru-he-kan-dai-react-guan-wang-zhong-suo-you-shi-li-de-bian-liang-sheng-ming-quan-bu-shi-yong-const/">
+                  <h2 class="post-title">【知乎】如何看待React官网中所有示例的变量声明全部使用const？</h2>
+                </a>
+                <div class="post-date">
+                  2022-07-18
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://blog.shaoyunxiang.cn/post/wei-shi-me-commonjs-he-es-module-bu-neng-gong-cun/">
+                  <h2 class="post-title">为什么 CommonJS 和 ES Module 不能共存</h2>
+                </a>
+                <div class="post-date">
+                  2022-07-14
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://blog.shaoyunxiang.cn/post/yarn-an-zhuang-yi-lai-wang-luo-wen-ti/">
+                  <h2 class="post-title">yarn安装依赖网络问题</h2>
+                </a>
+                <div class="post-date">
+                  2022-07-14
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://blog.shaoyunxiang.cn/post/node-sass-an-zhuang-zong-shi-chu-wen-ti-de-jie-jue-ban-fa/">
+                  <h2 class="post-title">node-sass安装总是出问题的解决办法</h2>
+                </a>
+                <div class="post-date">
+                  2022-07-14
+                </div>
+                <div class="post-abstract">
+                  <ol>
+<li>翻墙</li>
+<li>用 dart-sass代替node-sass</li>
+<li>如果不想更换package.json内的node-sass包名 又想将其替换成node-sass 可以使用如下的办法<br>
+yarn add --dev node-sass@npm:dart-sass<br>
+<img src="https://blog.shaoyunxiang.cn/post-images/1657789430443.png" alt="" loading="lazy"></li>
+</ol>
+
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://blog.shaoyunxiang.cn/post/vite2xvue3xts4xvue-router4xvuex4x-shi-jian-keng-zong-jie/">
+                  <h2 class="post-title">vite2.x+vue3.x+ts4.x+vue-router4.x+vuex4.x实践坑总结</h2>
+                </a>
+                <div class="post-date">
+                  2022-07-14
+                </div>
+                <div class="post-abstract">
+                  <p>###1.配置别名alias</p>
+<pre><code>1.需要在vite.config.ts下面做如下配置
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import path from 'path'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+    },
+  },
+  plugins: [vue()],
+})
+
+2.由于使用了ts所以在ts下面也要配置相应的path
+{
+  &quot;compilerOptions&quot;: {
+    &quot;target&quot;: &quot;esnext&quot;,
+    &quot;module&quot;: &quot;esnext&quot;,
+    &quot;moduleResolution&quot;: &quot;node&quot;,
+    &quot;strict&quot;: true,
+    &quot;jsx&quot;: &quot;preserve&quot;,
+    &quot;sourceMap&quot;: true,
+    &quot;resolveJsonModule&quot;: true,
+    &quot;esModuleInterop&quot;: true,
+    &quot;lib&quot;: [&quot;esnext&quot;, &quot;dom&quot;],
+    &quot;paths&quot;: {
+      &quot;@/*&quot;: [&quot;./src/*&quot;]
+    }
+  },
+  &quot;include&quot;: [&quot;src/**/*.ts&quot;, &quot;src/**/*.d.ts&quot;, &quot;src/**/*.tsx&quot;, &quot;src/**/*.vue&quot;]
+}
+
+3.然后可以在文件中这样引用
+import { useCount } from '@/hooks/useCount'
+import logo from '@/assets/logo.png'
+import test from '@/utils/test'
+</code></pre>
+
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://blog.shaoyunxiang.cn/post/js-bi-xu-jia-fen-hao-de-liang-chong-qing-kuang/">
+                  <h2 class="post-title">js必须加分号的两种情况</h2>
+                </a>
+                <div class="post-date">
+                  2022-07-14
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+            </article>
+          
+
+          <div class="pagination-container">
+  
+  
+    <a href="https://blog.shaoyunxiang.cn/tag/lae0w0OJY/page/2" class="next">下一页 <i class="icon-arrow-ios-forward-outline"></i></a>
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+
+  </body>
+</html>

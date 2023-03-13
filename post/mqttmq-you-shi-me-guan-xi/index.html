@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>MQTT、MQ有什么关系？ | Lost And Found</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.shaoyunxiang.cn/favicon.ico?v=1678686332981">
+<link rel="stylesheet" href="https://blog.shaoyunxiang.cn/styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="
+MQTT：一种通信协议，类似人类交谈中的汉语、英语、俄语中的一种语言规范
+MQ：一种通信通道，也叫消息队列，类似人类交谈中的用电话、email、微信的一种通信方式
+市面上的MQ产品很多，如阿里自研并开源RocketMQ，还有类似Rabbi..." />
+    <meta name="keywords" content="后端" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.shaoyunxiang.cn">
+        <img src="https://blog.shaoyunxiang.cn/images/avatar.png?v=1678686332981" class="site-logo">
+        <h1 class="site-title">Lost And Found</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      <span style="font-size:18px;font-weight:bold;text-shadow: black 0.1em 0.1em 0.2em">好的想象力比知识更重要</span>
+<div style="padding-top:4px">京ICP备16054061号</div>
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.shaoyunxiang.cn/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">MQTT、MQ有什么关系？</h2>
+            <div class="post-date">2023-01-16</div>
+            
+            <div class="post-content" v-pre>
+              <!-- more -->
+<p>MQTT：一种通信协议，类似人类交谈中的汉语、英语、俄语中的一种语言规范<br>
+MQ：一种通信通道，也叫消息队列，类似人类交谈中的用电话、email、微信的一种通信方式</p>
+<p>市面上的MQ产品很多，如阿里自研并开源RocketMQ，还有类似RabbitMQ、ActiveMQ，他们不但支持MQTT协议，还支持如AMQP、stomp协议等等。<br>
+基本概念：消息、消息协议、消息队列。<br>
+消息：信息的载体</p>
+<p>消息协议：为了让消息发送者和消息接收者都能够明白消息所承载的信息（消息发送者需要知道如何构造消息；消息接收者需要知道如何解析消息），它们就需要按照一种统一的格式描述消息，这种统一的格式称之为消息协议。所以，有效的消息一定具有某一种格式；而没有格式的消息是没有意义的。</p>
+<p>消息队列：消息从发送者到接收者的方式也有两种。</p>
+<blockquote></blockquote>
+<ul>
+<li>
+<p>一种为即时消息通讯，也就是说消息从一端发出后（消息发送者）立即就可以达到另一端（消息接收者），这种方式的具体实现就是我们已经介绍过的RPC（当然单纯的http通讯也满足这个定义）；</p>
+</li>
+<li>
+<p>另一种为延迟消息通讯，即消息从某一端发出后，首先进入一个容器进行临时存储，当达到某种条件后，再由这个容器发送给另一端。 这个容器的一种具体实现就是消息队列，如RabbitMQ</p>
+</li>
+</ul>
+<figure data-type="image" tabindex="1"><img src="https://blog.shaoyunxiang.cn/post-images/1673828158981.png" alt="" loading="lazy"></figure>
+<p>从上图可以看到，某一种消息通讯软件（或者叫做程序库）的实现都建立在“协议”基础上：RMI程序库建立在RMI协议上（RMI协议是JAVA规范协议的一部分） ，属于一种“即时消息通讯”；RabbitMQ和Qpid消息通讯软件的设计依据是AMQP协议，属于一种“延迟消息通讯”。<br>
+虽然消息协议存在“私有协议”和“开放协议”之分（是否向行业开放消息规范文档、是否允许某个组织更改协议），虽然某一个软件（程序库）不一定只支持一种协议（例如ActiveMQ实现了多种消息协议），虽然某一种协议也不一定只有一种软件（程序库）实现（例如能够支持webservice协议的程序库就有Codehaus XFire、Apache CXF、Jboss RESTEasy等），但是这并不影响“某一种消息通讯软件（或者叫做程序库）的实现都建立在“协议”基础上”的概念，反而是这个基本概念加强了。<br>
+AMQP的实现产品（例如RabbitMQ）</p>
+<ul>
+<li>
+<p>ActiveMQ是Apache软件基金会的开源产品，支持AMQP协议、MQTT协议（和XMPP协议作用类似）、Openwire协议和Stomp协议等多种消息协议。并且ActiveMQ完整支持JMS API接口规范。</p>
+</li>
+<li>
+<p>RabbitMQ基于Erlang语言开发和运行。它与Apache ActiveMQ有很多相同的特性，例如RabbitMQ完整支持多种消息协议：AMQP、STOMP、MQTT、HTTP，我们使用RabbitMQ时会默认使用AMQP1.0 协议。当然，RabbitMQ作为Apache ActiveMQ最主要的竞品之一也有其独特的功能特性。例如RabbitMQ支持一套特有的Routing-Exchange消息路由规则。这套规则可以按照消息内容，自动将消息归类到不同的消息队列中。</p>
+</li>
+</ul>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://blog.shaoyunxiang.cn/tag/R-Jy8htTm/" class="tag">
+                    后端
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.shaoyunxiang.cn/post/shi-me-shi-mesmanufacturing-execution-systemxi-tong/">
+                  <h3 class="post-title">
+                    什么是MES(Manufacturing Execution System)系统
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+
+  </body>
+</html>

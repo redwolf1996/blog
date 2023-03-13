@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>【知乎】如何看待React官网中所有示例的变量声明全部使用const？ | Lost And Found</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.shaoyunxiang.cn/favicon.ico?v=1678686332981">
+<link rel="stylesheet" href="https://blog.shaoyunxiang.cn/styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="
+如果你在用 ts 的话，const 和 let 两者，对于 literal，infer 出来的类型是不一样的。
+
+declare const a: number;
+const b = a &gt; 0 ? 'positive' : 'ne..." />
+    <meta name="keywords" content="web前端" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.shaoyunxiang.cn">
+        <img src="https://blog.shaoyunxiang.cn/images/avatar.png?v=1678686332981" class="site-logo">
+        <h1 class="site-title">Lost And Found</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      <span style="font-size:18px;font-weight:bold;text-shadow: black 0.1em 0.1em 0.2em">好的想象力比知识更重要</span>
+<div style="padding-top:4px">京ICP备16054061号</div>
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.shaoyunxiang.cn/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">【知乎】如何看待React官网中所有示例的变量声明全部使用const？</h2>
+            <div class="post-date">2022-07-18</div>
+            
+            <div class="post-content" v-pre>
+              <blockquote>
+<p>如果你在用 ts 的话，const 和 let 两者，对于 literal，infer 出来的类型是不一样的。</p>
+</blockquote>
+<pre><code>declare const a: number;
+const b = a &gt; 0 ? 'positive' : 'negativeOrZero'; // $ExpectType: &quot;positive&quot; | &quot;negativeOrZero&quot;
+let c = a &gt; 0 ? 'positive' : 'negativeOrZero'; // $ExpectType: string
+</code></pre>
+<h2 id="所以我几乎都是用-const为了更精确的-type-infer">所以，我几乎都是用 const，为了更精确的 type infer。</h2>
+<p>如果你接受了 functional programming 那套，例如说 Haskell，那你已经习惯了语言中只有 const 没有 let。一旦你习惯了这种写法，你回来用 JavaScript 这种允许 functional 但不强迫 functional 的语言时你会继续坚持 functional 的习惯。这时候你的所有赋值都是一次性的，你不会再去改变它，于是你可以统一写 const 而不是 let。这背后实际发生的是一种编程思维模式的改变。过去你会用一个变量名来代表一个存储空间，在一系列操作的过程中不断改变这个存储空间的内容，</p>
+<pre><code>就好像这样子：let result = initialValue;
+result += adjustment1;
+result += adjustment2;
+return result;
+</code></pre>
+<p>适应 functional 的过程中，因为所有赋值都是 const，你会停止把变量看作存储空间，你会把变量看作一个对计算结果的取名而已。就好比说「把距离除以时间的计算结果取名为速度」一样，目的是方便你将来在别的计算中用「速度」这个简单易懂的名字取代「距离除以时间」。习惯 functional 的思维模式后，你会把上述代码写成这样子：</p>
+<pre><code>const afterAdjustment1 = initialValue + adjustment1;
+const afterAdjustment2 = afterAdjustment1 + adjustment2;
+return afterAdjustment2;
+</code></pre>
+<p>你会对计算步骤取名字，而不是对存储空间取名字。忘却存储空间这件事情，假设 JavaScript 都能帮你打理好，不会太浪费实际存储空间，然后你会为每一个计算步骤取一个独一无二的名字，并且全部用 const。</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://blog.shaoyunxiang.cn/tag/lae0w0OJY/" class="tag">
+                    web前端
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.shaoyunxiang.cn/post/wei-shi-me-hen-duo-ren-xi-guan-ba-bu-fen-w-de-yin-fa-cheng-v/">
+                  <h3 class="post-title">
+                    为什么很多人习惯把部分「w」的音发成「v」？
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+
+  </body>
+</html>

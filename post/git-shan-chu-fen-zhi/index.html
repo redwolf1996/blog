@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>git删除分支 | Lost And Found</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.shaoyunxiang.cn/favicon.ico?v=1678686332981">
+<link rel="stylesheet" href="https://blog.shaoyunxiang.cn/styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="
+
+使用git branch -a查看左右分支，分支形如 『remotes/origin/&lt;branch_name&gt;』 的的是远程分支，其他的是本地分支，如果要删除某些分支，请先使用git checkout切换到这些以外的分支
+..." />
+    <meta name="keywords" content="生产力工具,Git" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.shaoyunxiang.cn">
+        <img src="https://blog.shaoyunxiang.cn/images/avatar.png?v=1678686332981" class="site-logo">
+        <h1 class="site-title">Lost And Found</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      <span style="font-size:18px;font-weight:bold;text-shadow: black 0.1em 0.1em 0.2em">好的想象力比知识更重要</span>
+<div style="padding-top:4px">京ICP备16054061号</div>
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.shaoyunxiang.cn/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">git删除分支</h2>
+            <div class="post-date">2023-02-13</div>
+            
+            <div class="post-content" v-pre>
+              <ol>
+<li>
+<p>使用<code>git branch -a</code>查看左右分支，分支形如 <strong>『remotes/origin/&lt;branch_name&gt;』</strong> 的的是远程分支，其他的是本地分支，如果要删除某些分支，请先使用<code>git checkout</code>切换到这些以外的分支</p>
+</li>
+<li>
+<p>使用<code>git banch -d &lt;branch_name&gt;</code>删除本地分支，如果无法删除，可以使用<code>git branch -D &lt;branch_name&gt;</code>强制删除</p>
+</li>
+<li>
+<p>使用<code>git push origin -d &lt;branch_name&gt;</code>删除远程分支</p>
+</li>
+</ol>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://blog.shaoyunxiang.cn/tag/3iYC18gSl/" class="tag">
+                    生产力工具
+                  </a>
+                
+                  <a href="https://blog.shaoyunxiang.cn/tag/ZjzhhpGI-/" class="tag">
+                    Git
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.shaoyunxiang.cn/post/ef-shu-ju-ku-code-first-shi-yong-visual-studio/">
+                  <h3 class="post-title">
+                    ef数据库code first 使用visual studio
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+
+  </body>
+</html>

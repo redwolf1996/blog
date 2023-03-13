@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>wordpress重定向及nginx配置 | Lost And Found</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.shaoyunxiang.cn/favicon.ico?v=1678686332981">
+<link rel="stylesheet" href="https://blog.shaoyunxiang.cn/styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="wordpress重定向
+location / {
+    index index.html index.php;
+    if (-f $request_filename/index.html){
+        rewrite (.*)..." />
+    <meta name="keywords" content="服务端" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.shaoyunxiang.cn">
+        <img src="https://blog.shaoyunxiang.cn/images/avatar.png?v=1678686332981" class="site-logo">
+        <h1 class="site-title">Lost And Found</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      <span style="font-size:18px;font-weight:bold;text-shadow: black 0.1em 0.1em 0.2em">好的想象力比知识更重要</span>
+<div style="padding-top:4px">京ICP备16054061号</div>
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.shaoyunxiang.cn/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">wordpress重定向及nginx配置</h2>
+            <div class="post-date">2020-10-30</div>
+            
+            <div class="post-content" v-pre>
+              <h3 id="wordpress重定向">wordpress重定向</h3>
+<pre><code>location / {
+    index index.html index.php;
+    if (-f $request_filename/index.html){
+        rewrite (.*) $1/index.html break;
+    }
+
+    if (-f $request_filename/index.php){
+        rewrite (.*) $1/index.php;
+    }
+
+    if (!-f $request_filename){
+        rewrite (.*) /index.php;
+    }
+}
+rewrite /wp-admin$ $scheme://$host$uri/ permanent;
+</code></pre>
+<h3 id="https配置">https配置</h3>
+<ul>
+<li>
+<ol>
+<li>在阿里云或其他地方申请证书文件得到如：<br>
+214040226730432.key  214040226730432.pem<br>
+放到如  /etc/nginx/cert目录下</li>
+</ol>
+</li>
+<li>
+<p>2.nginx配置文件里面</p>
+</li>
+</ul>
+<pre><code>server {
+    listen 443;
+    server_name jadewen.win www.jadewen.win;
+    ssl on;
+    root /var/www/default;
+    index index.php index.html;
+    ssl_certificate  cert/214040226730432.pem;
+    ssl_certificate_key  cert/214040226730432.key;
+    ssl_session_timeout 5m;
+    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+    ssl_prefer_server_ciphers on;
+    location / {
+      try_files $uri $uri/ /index.php?$query_string;
+    }
+
+      location ~ \.php$ {
+      fastcgi_pass 127.0.0.1:9000;
+      fastcgi_index index.php;
+      include fastcgi.conf;
+    }
+}
+</code></pre>
+<ul>
+<li>3.重定向http到https</li>
+</ul>
+<pre><code>server {
+    listen        80;
+    server_name  jadewen.win www.jadewen.win;
+    return 301    https://$host$request_uri;
+}
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://blog.shaoyunxiang.cn/tag/mG9HvNAZW/" class="tag">
+                    服务端
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.shaoyunxiang.cn/post/js-fu-zhi-shu-zu/">
+                  <h3 class="post-title">
+                    js复制数组
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+
+  </body>
+</html>

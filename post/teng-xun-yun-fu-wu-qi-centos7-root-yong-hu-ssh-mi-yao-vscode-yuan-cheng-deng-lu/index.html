@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>腾讯云服务器 centos7 root用户 ssh密钥vscode远程登录 | Lost And Found</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.shaoyunxiang.cn/favicon.ico?v=1678686332981">
+<link rel="stylesheet" href="https://blog.shaoyunxiang.cn/styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="
+为了体验一下vscode的remote-ssh插件的能力， 所以......
+
+基本原理是私钥解公钥，所以方式有两种：
+
+本地用ssh-keygen 生成密钥对 用id_rsa作为私钥解密, 将id_rsa.pub公钥的内容放到服务器
+/..." />
+    <meta name="keywords" content="" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.shaoyunxiang.cn">
+        <img src="https://blog.shaoyunxiang.cn/images/avatar.png?v=1678686332981" class="site-logo">
+        <h1 class="site-title">Lost And Found</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      <span style="font-size:18px;font-weight:bold;text-shadow: black 0.1em 0.1em 0.2em">好的想象力比知识更重要</span>
+<div style="padding-top:4px">京ICP备16054061号</div>
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.shaoyunxiang.cn/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">腾讯云服务器 centos7 root用户 ssh密钥vscode远程登录</h2>
+            <div class="post-date">2022-12-13</div>
+            
+            <div class="post-content" v-pre>
+              <blockquote>
+<p>为了体验一下vscode的remote-ssh插件的能力， 所以......</p>
+</blockquote>
+<h2 id="基本原理是私钥解公钥所以方式有两种">基本原理是私钥解公钥，所以方式有两种：</h2>
+<ol>
+<li>本地用ssh-keygen 生成密钥对 用id_rsa作为私钥解密, 将id_rsa.pub公钥的内容放到服务器<br>
+<code>/root/.ssh/authorized_keys</code>里面</li>
+<li>服务器用ssh-keygen 生成密钥对 将id_rsa.pub公钥的内容放到服务器的<br>
+<code>/root/.ssh/authorized_keys</code>里面，并且将id_rsa私钥发送给客户端，客户端使用服务器端生成的私钥解密</li>
+</ol>
+<ul>
+<li>客户端的 sshconfig配置如下<br>
+<code>vim /Users/syx/.ssh/config</code> 其中id_rsa2是自定义新建的文件内容就是服务端生成的私钥内容</li>
+</ul>
+<pre><code>Host 121.4.56.221
+    HostName 121.4.56.221
+    User root
+    Port 22
+    IdentityFile ~/.ssh/id_rsa2
+</code></pre>
+<p>显然如果很多用户使用一个服务器 需要远程登录的话第二种方式具有更好的复用性 但是坏处在于私钥大量的提供，第一种方式则需要在服务器的authorized_keys里面不停的添加不同客户端的公钥，压力给了服务端 请根据实际情况自行选择</p>
+<h3 id="最蛋疼的地方在于我们需要在服务器上配置如下">最蛋疼的地方在于我们需要在服务器上配置如下</h3>
+<p>编辑 <code>vim /etc/ssh/sshd_config</code>文件 配置以下选项</p>
+<pre><code>PermitRootLogin yes
+PubkeyAuthentication yes
+AuthorizedKeysFile .ssh/authorized_keys
+PasswordAuthentication yes
+GSSAPIAuthentication no
+GSSAPICleanupCredentials no
+UsePAM yes
+</code></pre>
+<p>然后service sshd restart 使得配置生效 值的一提的是 sshd_config  authorized_keys 以及客户端的config文件的权限需要设置为chmod 600或者更低的chmod 400<br>
+接着去登录才能成功</p>
+<p>登录成功后再把服务器sshd_config文件的 PasswordAuthentication yes 改成no 以禁用密码登录只允许ssh登录 才能最后成功</p>
+<p>这也是腾讯云最傻逼的地方 搞了我一天 妈的.......</p>
+
+            </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.shaoyunxiang.cn/post/git-submodulezi-mo-kuai-de-la-qu/">
+                  <h3 class="post-title">
+                    Git submodule(子模块)的拉取
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+
+  </body>
+</html>

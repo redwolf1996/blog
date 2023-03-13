@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>对低代码、零代码产品的一些看法 | Lost And Found</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.shaoyunxiang.cn/favicon.ico?v=1678686332981">
+<link rel="stylesheet" href="https://blog.shaoyunxiang.cn/styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="徐飞
+​
+前端开发话题下的优秀答主
+已关注
+385 人赞同了该文章
+这段时间，跟不少朋友讨论过有关“可视搭建”、“低代码”、“零代码”相关的一些话题，也当面解答过一些问题，感觉有必要把一些观点写出来。
+搭建系统的实质
+一个基于搭建的想要解决..." />
+    <meta name="keywords" content="生活感悟" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.shaoyunxiang.cn">
+        <img src="https://blog.shaoyunxiang.cn/images/avatar.png?v=1678686332981" class="site-logo">
+        <h1 class="site-title">Lost And Found</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      <span style="font-size:18px;font-weight:bold;text-shadow: black 0.1em 0.1em 0.2em">好的想象力比知识更重要</span>
+<div style="padding-top:4px">京ICP备16054061号</div>
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.shaoyunxiang.cn/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">对低代码、零代码产品的一些看法</h2>
+            <div class="post-date">2022-07-28</div>
+            
+            <div class="post-content" v-pre>
+              <p>徐飞<br>
+​<br>
+前端开发话题下的优秀答主<br>
+已关注<br>
+385 人赞同了该文章<br>
+这段时间，跟不少朋友讨论过有关“可视搭建”、“低代码”、“零代码”相关的一些话题，也当面解答过一些问题，感觉有必要把一些观点写出来。</p>
+<h3 id="搭建系统的实质">搭建系统的实质</h3>
+<p>一个基于搭建的想要解决提效问题的平台，需要至少能明确回答几个问题：</p>
+<ul>
+<li>软件系统的开发效率消耗在哪些环节，原因分别是什么？</li>
+<li>当前所面向行业的人员状况分别是怎样的，软件系统有哪些类别？</li>
+<li>为了提升效率，策略可能有哪些，分别是从什么角度解决，有可能带来什么新问题？</li>
+<li>未来的产品规划里，你期望的平台使用角色是哪些，分别如何参与的？</li>
+<li>出现未知领域的新业务产品，平台可以如何去支撑？</li>
+<li>整个这个体系，更长远的发展思路是什么？</li>
+</ul>
+<p>业务的复杂度只会转移，是不会消失的。用代码表达，或者搭建系统表达，本质上只是改变了其组织形态，得到的管控方式有所差别，其业务实质是一样的。</p>
+<p>所以，我们想要通过搭建系统来表达一个业务，其底层首先就要有对等于主流开发框架的架构，确保拥有完整表达业务需求的能力，然后才去做产品形态上的权衡。</p>
+<p>如果我们面向某个行业，则不免需要与几种角色打交道：</p>
+<ul>
+<li>业务专家</li>
+<li>一般业务人员</li>
+<li>有一定IT知识的人员</li>
+<li>有专业开发技能的人员</li>
+</ul>
+<p>所以，产品形态的设计，也是要考虑到他们的业务倾向和知识范畴。而其他的一些角色，尤其是设计师和前端开发人员，则应当尽可能在平台中消除他们的参与，把这两种角色提供的能力进行模块化，预先设计基于某个业务领域的交互集，然后由单一职责的研发人员来统一使用两种基建：</p>
+<ul>
+<li>存储</li>
+<li>交互<br>
+并且使用逻辑与规则把这些东西编排起来。</li>
+</ul>
+<p>需要认识到，因为业务复杂度不灭，实际上所有的业务复杂度都聚集在单一职责的研发人员身上了，所以如果从零开始建立一个业务系统，唯一感受不到提效的会是这个角色，这是一种必然。对他们的提效，需要在业务差异化定制的时候，由对业务复用的方法论去体现。</p>
+<h3 id="业务软件的定制化">业务软件的定制化</h3>
+<p>在业务软件领域，通常会面临定制化问题，除了少数功能极其单一的软件，一般都会存在差异化需求。绝大部分业务软件会被这个问题困扰。</p>
+<p>基于代码分支实现的差异化需求管理，是一种比较艰难的方式，因为单一的业务功能，往往其变更贯穿前后端，涉及代码中的多个位置，而且这些代码中的实现，往往与其他功能也有关。所以本质问题就是，功能点不是独立隔离的，导致要从某家客户的版本迁移给另外一家客户，是一件比较难操作的事情。</p>
+<p>目前，大部分主流行业软件提供商都会提供各种维度的定制能力，但是它们一般有一个共性：围绕自身的业务领域。这种可定制能力，可以认为就是：低代码。</p>
+<p>低代码的含义在两个方面：</p>
+<ul>
+<li>可以通过代码来扩展业务能力</li>
+<li>比直接写代码的那种方式代码要少一些</li>
+</ul>
+<p>结合我们在上一节提到的，一种可搭建平台的底层实质上是一种框架：</p>
+<ul>
+<li>写代码扩展业务能力，是基于框架的扩展点，并且这些扩展可以被管理起来</li>
+<li>代码少一些，是因为框架额外提供了一些能力</li>
+</ul>
+<p>纵观整个应用开发体系，我们可以发现，最适合低代码发挥的前提是：</p>
+<ul>
+<li>针对一个特定业务领域，已经存在完整的标准化业务实现了</li>
+<li>交互集也已经齐备<br>
+然后，可以修改规则，添加校验，编排现有的动作，调整视图的结构和布局，并补齐剩余的其他细节修改。</li>
+</ul>
+<p>所以，从这个角度，我们可以认识到：</p>
+<blockquote>
+<p>低代码的主要适用场景是解决相同业务领域下的差异化问题的。尽管可能存在这样的能力，但是我们并不期望某种业务从零开始基于低代码搭建整个业务，而是期望定制化团队使用这样的方式去进行小规模定制，并且把这种定制的差异化，隔离在其自身的作用域中，不对其他租户或者客户产生影响。</p>
+</blockquote>
+<h3 id="业务软件的个性化">业务软件的个性化</h3>
+<p>定制好了以后，出厂交付了的业务软件需要很强的个性化能力吗？</p>
+<p>这个问题很有意思。传统观念，这类软件用来办公的，个性化的价值很小，但是我个人觉得这个问题是可以探讨的。</p>
+<p>疫情期间，大家都会去戴口罩，口罩应该长什么样子呢？就是通常大家所能想象的形态，最多是形状和颜色有差异。人们对业务系统的认知通常也是差不多，就是大面积的表格表单，风格稍有差别而已。</p>
+<p>但是有一次，我看到一位之前的女同事，她发了一张非常好看的口罩照片，这照片里的口罩是蕾丝的、绣花的，配合她靓丽的面容，简直如虎添翼（划掉，重新想个词！）。</p>
+<p>很多年前，我们上一代人的办公桌是什么样子呢？木制，偏棕色，有的会盖一块玻璃，上面放着电话机，纸笔，有的比较雅致的，会放一盆水仙花。</p>
+<p>那么，现在，大家的办公桌又如何呢？已经有很多人个性化装扮了自己的桌面了，比如很多人桌面放着玩偶（据说叫做手办？这个我不太懂，用错词了大家体谅下。。。），有的放着乐高积木搭建的某种建筑，有的放着其他形式的装饰。</p>
+<p>所以说，会不会是我们不需要定制业务软件，而是因为之前的可定制能力限制了大家呢？</p>
+<p>通常的业务系统中，都会给用户留一定的个性化空间，最典型的就是工作台。通过这个去组织自己的工作习惯，但大部分系统实际上只是把它当作功能入口来使用，没有真正地做好这块，因为把每种业务模块都提供可集成单元的代价较大。</p>
+<p>如果我们抛开这种固有的看法，把视野拓宽到整个应用中的一切业务视图，如果都尽可能地赋予用户自由组合与调整的能力，对使用效率的提升一定会很巨大。</p>
+<p>这样，个性化不再局限于风格与主题的定制，而是真正体现到了业务表现形态的差异化和高效化。</p>
+<p>所以，从这个角度，我们可以认识到：</p>
+<blockquote>
+<p>无代码的主要使用场景是在业务齐备的情况下，不更改业务语义，解决个性化需求。每个用户，可以定制自己的工作台，调整业务界面的布局形态，设定某功能的搜索偏好，调整表格和表单种字段的填写和展示状况，等等。</p>
+</blockquote>
+<h3 id="小结">小结</h3>
+<p>综上，我们可以发现，不管哪种形态，都只是相同底层约束之上，面向不同使用群体的一种产品抽象而已。它们从不矛盾，而是互补的。甚至也可以从另外一个角度看待，提供一种从轻度差异化到重度差异化定制的产品升级路线，使得每个层面的客户都可以得到适合自己层次的需求定制度。</p>
+<p>编辑于 2020-07-05 22:48</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://blog.shaoyunxiang.cn/tag/8jbPDqfjT/" class="tag">
+                    生活感悟
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.shaoyunxiang.cn/post/vue-jian-ce-shu-zu-bian-hua-de-wen-ti/">
+                  <h3 class="post-title">
+                    Vue监测数组变化的问题
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+
+  </body>
+</html>

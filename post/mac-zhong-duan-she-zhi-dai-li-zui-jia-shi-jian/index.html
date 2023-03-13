@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>mac终端设置代理最佳实践 | Lost And Found</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.shaoyunxiang.cn/favicon.ico?v=1678686332981">
+<link rel="stylesheet" href="https://blog.shaoyunxiang.cn/styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="
+在开发中用各种包管理工具安装东西非常慢，除了设置国内源之外，还可以设置终端代理
+
+
+在 ~ 下面建立proxy.sh脚本内容如下：
+
+# 开启代理
+function px(){
+    # port 根据你的代理工具自行设置
+    ex..." />
+    <meta name="keywords" content="生产力工具" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.shaoyunxiang.cn">
+        <img src="https://blog.shaoyunxiang.cn/images/avatar.png?v=1678686332981" class="site-logo">
+        <h1 class="site-title">Lost And Found</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      <span style="font-size:18px;font-weight:bold;text-shadow: black 0.1em 0.1em 0.2em">好的想象力比知识更重要</span>
+<div style="padding-top:4px">京ICP备16054061号</div>
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.shaoyunxiang.cn/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">mac终端设置代理最佳实践</h2>
+            <div class="post-date">2022-08-18</div>
+            
+            <div class="post-content" v-pre>
+              <blockquote>
+<p>在开发中用各种包管理工具安装东西非常慢，除了设置国内源之外，还可以设置终端代理</p>
+</blockquote>
+<ol>
+<li>在 ~ 下面建立proxy.sh脚本内容如下：</li>
+</ol>
+<pre><code># 开启代理
+function px(){
+    # port 根据你的代理工具自行设置
+    export https_proxy=http://127.0.0.1:7890
+    export http_proxy=http://127.0.0.1:7890
+    export all_proxy=socks5://127.0.0.1:7890
+    echo -e &quot;已开启代理...:)&quot;
+}
+# 关闭代理
+function upx(){
+    unset ALL_PROXY
+    unset http_proxy
+    unset https_proxy
+    echo -e &quot;已关闭代理...:(&quot;
+}
+
+</code></pre>
+<ol start="2">
+<li>vim ~/.zshrc 增加内容如下：</li>
+</ol>
+<pre><code>source $HOME/.term_proxy.sh
+</code></pre>
+<ol start="3">
+<li>重启 或者source .zhsrc文件后生效</li>
+</ol>
+<ul>
+<li><strong>px</strong> 开启代理  <strong>upx</strong>关闭代理</li>
+</ul>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://blog.shaoyunxiang.cn/tag/3iYC18gSl/" class="tag">
+                    生产力工具
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.shaoyunxiang.cn/post/shi-tu-dian-fu-javascript-sheng-tai-qin-shen-shi-yong-xin-js-yun-xing-shi-bun-hou-wo-jue-de-wei-lai-ke-qi/">
+                  <h3 class="post-title">
+                    试图颠覆 JavaScript 生态？亲身试用新 JS 运行时 Bun 后，我觉得未来可期
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+
+  </body>
+</html>

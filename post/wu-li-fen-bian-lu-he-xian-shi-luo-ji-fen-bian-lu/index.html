@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>物理分辨率和显示(逻辑)分辨率 | Lost And Found</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.shaoyunxiang.cn/favicon.ico?v=1678686332981">
+<link rel="stylesheet" href="https://blog.shaoyunxiang.cn/styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="
+
+比如大家常说的4k还有前些年常讲的1080p。 这个其实就是说这个屏幕的物理分辨率有多少，再通俗一点就是说这款显示器硬件上有多少个像素小灯泡。
+
+
+什么是逻辑上的分辨率呢？这个其实就是显示分辨率，指的是操作系统在渲染图像时，把这个显示当..." />
+    <meta name="keywords" content="计算机基础" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.shaoyunxiang.cn">
+        <img src="https://blog.shaoyunxiang.cn/images/avatar.png?v=1678686332981" class="site-logo">
+        <h1 class="site-title">Lost And Found</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      <span style="font-size:18px;font-weight:bold;text-shadow: black 0.1em 0.1em 0.2em">好的想象力比知识更重要</span>
+<div style="padding-top:4px">京ICP备16054061号</div>
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.shaoyunxiang.cn/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">物理分辨率和显示(逻辑)分辨率</h2>
+            <div class="post-date">2020-09-14</div>
+            
+            <div class="post-content" v-pre>
+              <ul>
+<li>
+<p>比如大家常说的4k还有前些年常讲的1080p。 这个其实就是说这个屏幕的物理分辨率有多少，再通俗一点就是说这款显示器硬件上有多少个像素小灯泡。</p>
+</li>
+<li>
+<p>什么是逻辑上的分辨率呢？这个其实就是显示分辨率，指的是操作系统在渲染图像时，把这个显示当做 m*n的分辨率来渲染。 因此在这种情况下，我们看到3840是1920的两倍，因此我的操作系统会用显示器上2个物理上的像素点来当做一个像素点来用。</p>
+</li>
+<li>
+<p>如果你注意过你的retina macpro，会发现你的retina mac-pro也不是按照他的实际物理分辨率来显示的。你可以使用截图的方式来查看下(前端同学也可以在浏览器里调用screen api查看)，我发现我的macpro的分辨率在1280*800 (retina 13寸 2015 early款)。 所以其实macbook pro的retina显示屏的逻辑像素和物理像素之间也是个2倍的关系。</p>
+</li>
+</ul>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://blog.shaoyunxiang.cn/tag/k38Yt8KmH/" class="tag">
+                    计算机基础
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.shaoyunxiang.cn/post/nan-jing-fen-xiao-wai-bao-xiang-mu-zong-jie/">
+                  <h3 class="post-title">
+                    南京分销外包项目总结
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+
+  </body>
+</html>

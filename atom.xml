@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://blog.shaoyunxiang.cn</id>
+    <title>Lost And Found</title>
+    <updated>2023-03-13T05:45:36.272Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://blog.shaoyunxiang.cn"/>
+    <link rel="self" href="https://blog.shaoyunxiang.cn/atom.xml"/>
+    <subtitle>&lt;span style=&quot;font-size:18px;font-weight:bold;text-shadow: black 0.1em 0.1em 0.2em&quot;&gt;好的想象力比知识更重要&lt;/span&gt;
+&lt;div style=&quot;padding-top:4px&quot;&gt;京ICP备16054061号&lt;/div&gt;</subtitle>
+    <logo>https://blog.shaoyunxiang.cn/images/avatar.png</logo>
+    <icon>https://blog.shaoyunxiang.cn/favicon.ico</icon>
+    <rights>All rights reserved 2023, Lost And Found</rights>
+    <entry>
+        <title type="html"><![CDATA[浏览器检测视频编码格式的代码]]></title>
+        <id>https://blog.shaoyunxiang.cn/post/liu-lan-qi-jian-ce-shi-pin-bian-ma-ge-shi-de-dai-ma/</id>
+        <link href="https://blog.shaoyunxiang.cn/post/liu-lan-qi-jian-ce-shi-pin-bian-ma-ge-shi-de-dai-ma/">
+        </link>
+        <updated>2023-03-13T05:42:44.000Z</updated>
+        <content type="html"><![CDATA[<pre><code>const videoEle = document.querySelector('video');
+
+if (MediaSource.isTypeSupported('video/mp4; codecs=av01.0.05M.08')) {  
+    console.log('AV1')
+} else if (videoEle.canPlayType('video/mp4; codecs=&quot;hevc&quot;')) {
+    console.log('H.265/HEVC')
+} else {
+    console.log('H.264/AVC')
+}
+
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[【译】【转载】Google go 风格指南]]></title>
+        <id>https://blog.shaoyunxiang.cn/post/yi-zhuan-zai-google-go-feng-ge-zhi-nan/</id>
+        <link href="https://blog.shaoyunxiang.cn/post/yi-zhuan-zai-google-go-feng-ge-zhi-nan/">
+        </link>
+        <updated>2023-03-08T09:18:56.000Z</updated>
+        <content type="html"><![CDATA[<p><a href="https://www.pseudoyu.com/zh/2022/12/08/go_style_guide/">https://www.pseudoyu.com/zh/2022/12/08/go_style_guide/</a></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[git常用操作及git-rebase详解]]></title>
+        <id>https://blog.shaoyunxiang.cn/post/git-chang-yong-cao-zuo-ji-git-rebase-xiang-jie/</id>
+        <link href="https://blog.shaoyunxiang.cn/post/git-chang-yong-cao-zuo-ji-git-rebase-xiang-jie/">
+        </link>
+        <updated>2023-02-27T01:50:32.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="常用操作">常用操作</h2>
+<p><a href="https://juejin.cn/post/6844903586120335367">https://juejin.cn/post/6844903586120335367</a></p>
+<h2 id="rebase也是git合并分支的一种方式">rebase(也是git合并分支的一种方式)</h2>
+<p><a href="https://juejin.cn/post/6844903638070984718">https://juejin.cn/post/6844903638070984718</a></p>
+<h2 id="b站it老齐对rebase和merge区别的解释">B站「it老齐」对rebase和merge区别的解释</h2>
+<p><a href="https://www.bilibili.com/video/BV1Bg41167Zi/?spm_id_from=333.788.recommend_more_video.3&amp;vd_source=6ca69aad687abe4689dfd921d496ebfa">https://www.bilibili.com/video/BV1Bg41167Zi/?spm_id_from=333.788.recommend_more_video.3&amp;vd_source=6ca69aad687abe4689dfd921d496ebfa</a><br>
+结论是：</p>
+<ul>
+<li>特性分支合并主分支的时候用rebase</li>
+<li>主分支合并特性分支的时候用merge</li>
+</ul>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[vscode extentions]]></title>
+        <id>https://blog.shaoyunxiang.cn/post/vscode-extentions/</id>
+        <link href="https://blog.shaoyunxiang.cn/post/vscode-extentions/">
+        </link>
+        <updated>2023-02-24T03:40:33.000Z</updated>
+        <content type="html"><![CDATA[<blockquote>
+<p>在根目录下新建文件 .vscode/extensions.json<br>
+格式如下：</p>
+</blockquote>
+<pre><code>{
+    &quot;recommendations&quot;: [
+        &quot;rokoroku.vscode-theme-darcula&quot;,
+        &quot;mikestead.dotenv&quot;,
+    ]
+}
+</code></pre>
+<p><img src="https://blog.shaoyunxiang.cn/post-images/1677215347501.png" alt="" loading="lazy"><br>
+<img src="https://blog.shaoyunxiang.cn/post-images/1677215354014.png" alt="" loading="lazy"><br>
+<img src="https://blog.shaoyunxiang.cn/post-images/1677215360121.png" alt="" loading="lazy"><br>
+<img src="https://blog.shaoyunxiang.cn/post-images/1677215365482.png" alt="" loading="lazy"><br>
+<img src="https://blog.shaoyunxiang.cn/post-images/1677215370252.png" alt="" loading="lazy"></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[vscode 快捷键]]></title>
+        <id>https://blog.shaoyunxiang.cn/post/vscode-kuai-jie-jian/</id>
+        <link href="https://blog.shaoyunxiang.cn/post/vscode-kuai-jie-jian/">
+        </link>
+        <updated>2023-02-24T01:32:55.000Z</updated>
+        <content type="html"><![CDATA[<blockquote>
+<p>windows和mac分别是两套不同步，但是相同平台之间是自动同步的，选项都一样</p>
+</blockquote>
+<pre><code>1. View Toggle Primary Side Bar Visibility  // 切换侧边文件目录显示和隐藏
+{
+  &quot;key&quot;: &quot;alt/cmd+1&quot;,
+  &quot;command&quot;: &quot;workbench.action.toggleSidebarVisibility&quot;
+}
+
+2. File Reveal Active File in Explorer View // 聚焦当前文件
+{
+  &quot;key&quot;: &quot;alt/cmd+2&quot;,
+  &quot;command&quot;: &quot;workbench.files.action.showActiveFileInExplorer&quot;
+}
+
+3. Delete Line // 删除光标所处的行
+{
+  &quot;key&quot;: &quot;alt/cmd+d&quot;,
+  &quot;command&quot;: &quot;editor.action.deleteLines&quot;,
+  &quot;when&quot;: &quot;textInputFocus &amp;&amp; !editorReadonly&quot;
+}
+
+4. Move Line Up // 向上移动行
+{
+  &quot;key&quot;: &quot;alt/cmd+up&quot;,
+  &quot;command&quot;: &quot;editor.action.moveLinesUpAction&quot;,
+  &quot;when&quot;: &quot;editorTextFocus &amp;&amp; !editorReadonly&quot;
+}
+
+5. Move Line Down // 向下移动行
+{
+  &quot;key&quot;: &quot;alt/cmd+down&quot;,
+  &quot;command&quot;: &quot;editor.action.moveLinesDownAction&quot;,
+  &quot;when&quot;: &quot;editorTextFocus &amp;&amp; !editorReadonly&quot;
+}
+
+6. View Toggle Terminal // 切换终端命令窗口的显示与隐藏
+{
+  &quot;key&quot;: &quot;ctrl+`&quot;,
+  &quot;command&quot;: &quot;workbench.action.terminal.toggleTerminal&quot;,
+  &quot;when&quot;: &quot;terminal.active&quot;
+}
+
+7. Git Commit // git 提交
+{
+  &quot;key&quot;: &quot;shift+alt+up&quot;,
+  &quot;command&quot;: &quot;git.commit&quot;
+}
+{
+  &quot;key&quot;: &quot;shift+cmd+up&quot;,
+  &quot;command&quot;: &quot;git.commit&quot;
+}
+
+8. File Save // 保存文件
+{
+  &quot;key&quot;: &quot;alt/ctrl(win)/cmd(mac)+s&quot;,
+  &quot;command&quot;: &quot;workbench.action.files.save&quot;
+}
+
+9. Undo // 更改撤销
+{
+  &quot;key&quot;: &quot;alt/ctrl(win)/cmd(mac)+z&quot;,
+  &quot;command&quot;: &quot;undo&quot;
+}
+
+10. Redo //更改前进
+{
+  &quot;key&quot;: &quot;alt/ctrl(win)/cmd(mac)+y&quot;,
+  &quot;command&quot;: &quot;redo&quot;
+}
+
+11. Copy // 复制
+{
+  &quot;key&quot;: &quot;cmd/ctrl/alt+c&quot;,
+  &quot;command&quot;: &quot;editor.action.clipboardCopyAction&quot;
+}
+
+12. Paste // 粘贴
+{
+  &quot;key&quot;: &quot;cmd/ctrl/alt+v&quot;,
+  &quot;command&quot;: &quot;editor.action.clipboardPasteAction&quot;
+}
+
+13. Find // 查找
+{
+  &quot;key&quot;: &quot;cmd/ctrl/alt+f&quot;,
+  &quot;command&quot;: &quot;actions.find&quot;,
+  &quot;when&quot;: &quot;editorFocus || editorIsOpen&quot;
+}
+
+14. Replace // 查找并替换
+{
+  &quot;key&quot;: &quot;cmd/ctrl/alt+r&quot;,
+  &quot;command&quot;: &quot;editor.action.startFindReplaceAction&quot;,
+  &quot;when&quot;: &quot;editorFocus || editorIsOpen&quot;
+}
+
+15. Close Window/Editor // 关闭窗口、标签页等
+{
+  &quot;key&quot;: &quot;cmd/ctrl/alt+w&quot;,
+  &quot;command&quot;: &quot;workbench.action.closeWindow/closeWindow&quot;,
+  &quot;when&quot;: &quot;!editorIsOpen &amp;&amp; !multipleEditorGroups&quot;
+}
+
+16. File Open Recent...  // 打开最近文件
+{
+  &quot;key&quot;: &quot;cmd/ctrl/alt+e&quot;,
+  &quot;command&quot;: &quot;workbench.action.openRecent&quot;
+}
+
+17. Go to File... // 快速打开文件
+{
+  &quot;key&quot;: &quot;cmd/ctrl/alt+p&quot;,
+  &quot;command&quot;: &quot;workbench.action.quickOpen&quot;
+}
+
+18. Show All Commands // 打开vscode命令
+{
+  &quot;key&quot;: &quot;cmd/ctrl/alt+shift+p&quot;,
+  &quot;command&quot;: &quot;workbench.action.showCommands&quot;
+}
+
+19. Go to Symbol in Workspace... // 全局搜索
+{
+  &quot;key&quot;: &quot;cmd/ctrl/alt+t&quot;,
+  &quot;command&quot;: &quot;workbench.action.showAllSymbols&quot;
+}
+
+20. Cut // 剪切
+{
+  &quot;key&quot;: &quot;cmd/ctrl/alt+x&quot;,
+  &quot;command&quot;: &quot;editor.action.clipboardCutAction&quot;
+}
+
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[gitignore添加新的忽略文件]]></title>
+        <id>https://blog.shaoyunxiang.cn/post/gitignore-tian-jia-xin-de-hu-lue-wen-jian/</id>
+        <link href="https://blog.shaoyunxiang.cn/post/gitignore-tian-jia-xin-de-hu-lue-wen-jian/">
+        </link>
+        <updated>2023-02-23T01:38:31.000Z</updated>
+        <content type="html"><![CDATA[<pre><code>1. git rm -r --cached .
+2. 在.gitignore文件里添加新的忽略的文件或者文件夹
+3. git add .
+4. git commit -m 'update .gitignore' 
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[vscode c# 点击类无法跳转问题解决]]></title>
+        <id>https://blog.shaoyunxiang.cn/post/vscode-c-dian-ji-lei-wu-fa-tiao-zhuan-wen-ti-jie-jue/</id>
+        <link href="https://blog.shaoyunxiang.cn/post/vscode-c-dian-ji-lei-wu-fa-tiao-zhuan-wen-ti-jie-jue/">
+        </link>
+        <updated>2023-02-14T07:59:21.000Z</updated>
+        <content type="html"><![CDATA[<ol>
+<li>
+<p>安装微软官方C#插件后，更改设置，打开反编译选项<br>
+<img src="https://blog.shaoyunxiang.cn/post-images/1676362979902.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p>按 <code>ctrl/command + shift + p</code> 输入 「OmniSharp: Select Project」</p>
+</li>
+<li>
+<p>按理说如果项目只有一个sln文件，安装插件后会自动分析文件，但是如果有多个sln文件多个csproj文件那么我们需要手动指定，如下图所示：<br>
+<img src="https://blog.shaoyunxiang.cn/post-images/1676363285748.png" alt="" loading="lazy"><br>
+选择后vscode的底部状态栏会出现下图所示的过程<br>
+<img src="https://blog.shaoyunxiang.cn/post-images/1676363391811.png" alt="" loading="lazy"><br>
+等分析完毕就可以实现点击跳转了：<br>
+<img src="https://blog.shaoyunxiang.cn/post-images/1676363500358.png" alt="" loading="lazy"><br>
+<img src="https://blog.shaoyunxiang.cn/post-images/1676363507602.png" alt="" loading="lazy"></p>
+</li>
+</ol>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[git删除分支]]></title>
+        <id>https://blog.shaoyunxiang.cn/post/git-shan-chu-fen-zhi/</id>
+        <link href="https://blog.shaoyunxiang.cn/post/git-shan-chu-fen-zhi/">
+        </link>
+        <updated>2023-02-13T07:17:06.000Z</updated>
+        <content type="html"><![CDATA[<ol>
+<li>
+<p>使用<code>git branch -a</code>查看左右分支，分支形如 <strong>『remotes/origin/&lt;branch_name&gt;』</strong> 的的是远程分支，其他的是本地分支，如果要删除某些分支，请先使用<code>git checkout</code>切换到这些以外的分支</p>
+</li>
+<li>
+<p>使用<code>git banch -d &lt;branch_name&gt;</code>删除本地分支，如果无法删除，可以使用<code>git branch -D &lt;branch_name&gt;</code>强制删除</p>
+</li>
+<li>
+<p>使用<code>git push origin -d &lt;branch_name&gt;</code>删除远程分支</p>
+</li>
+</ol>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[ef数据库code first 使用visual studio]]></title>
+        <id>https://blog.shaoyunxiang.cn/post/ef-shu-ju-ku-code-first-shi-yong-visual-studio/</id>
+        <link href="https://blog.shaoyunxiang.cn/post/ef-shu-ju-ku-code-first-shi-yong-visual-studio/">
+        </link>
+        <updated>2023-02-09T09:44:45.000Z</updated>
+        <content type="html"><![CDATA[<ol>
+<li>vs 菜单栏-》NuGet包管理器-》程序包管理控制台 （项目选择包含有DbContext文件的目录）</li>
+<li>在控制台下输入  add-Migration &lt;custom_name&gt; 生成数据库迁移和文件</li>
+<li>在控制台下输入  update-Database 更新数据库迁移和文件</li>
+</ol>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[EF- code first 数据库迁移(cli 方式)]]></title>
+        <id>https://blog.shaoyunxiang.cn/post/ef-code-first-shu-ju-ku-qian-yi-cli-fang-shi/</id>
+        <link href="https://blog.shaoyunxiang.cn/post/ef-code-first-shu-ju-ku-qian-yi-cli-fang-shi/">
+        </link>
+        <updated>2023-02-09T00:45:39.000Z</updated>
+        <summary type="html"><![CDATA[<blockquote>
+<p>注意：必须要关闭vscode的debug运行模式才能进行操作 否则会失败<br>
+由于visual studio在本人的电脑上太卡，所以用vscode写.net项目 在vscode的生成efcore数据库迁移文件</p>
+</blockquote>
+<ol>
+<li>
+<p>首先安装全局的ef cli工具 dotnet tool install --global dotnet-ef</p>
+</li>
+<li>
+<p>然后使用 dotnet ef migrations add test_migration -p &quot;./FSMOM.EntityModel/FSMOM.EntityModel.csproj&quot; -s &quot;./FSMOM.Entry/FSMOM.Entry.csproj&quot;（-p是--project的简称，后面是跟的相对目录默认当前文件夹，如果目录下有多个csproj文件需要指定一个；-s是--startup-project的简称，后面也是跟的相对目录默认当前文件夹，如果目录下有多个csproj文件也需要指定一个）生成迁移文件</p>
+</li>
+<li>
+<p>使用dotnet ef database update -p &quot;./FSMOM.EntityModel/FSMOM.EntityModel.csproj&quot; -s &quot;./FSMOM.Entry/FSMOM.Entry.csproj&quot; 将迁移文件写入数据库</p>
+</li>
+<li>
+<p>删除：<br>
+dotnet ef migrations remove test_migration -p &quot;./FSMOM.EntityModel/FSMOM.EntityModel.csproj&quot; -s &quot;./FSMOM.Entry/FSMOM.Entry.csproj&quot;</p>
+</li>
+</ol>
+]]></summary>
+        <content type="html"><![CDATA[<blockquote>
+<p>注意：必须要关闭vscode的debug运行模式才能进行操作 否则会失败<br>
+由于visual studio在本人的电脑上太卡，所以用vscode写.net项目 在vscode的生成efcore数据库迁移文件</p>
+</blockquote>
+<ol>
+<li>
+<p>首先安装全局的ef cli工具 dotnet tool install --global dotnet-ef</p>
+</li>
+<li>
+<p>然后使用 dotnet ef migrations add test_migration -p &quot;./FSMOM.EntityModel/FSMOM.EntityModel.csproj&quot; -s &quot;./FSMOM.Entry/FSMOM.Entry.csproj&quot;（-p是--project的简称，后面是跟的相对目录默认当前文件夹，如果目录下有多个csproj文件需要指定一个；-s是--startup-project的简称，后面也是跟的相对目录默认当前文件夹，如果目录下有多个csproj文件也需要指定一个）生成迁移文件</p>
+</li>
+<li>
+<p>使用dotnet ef database update -p &quot;./FSMOM.EntityModel/FSMOM.EntityModel.csproj&quot; -s &quot;./FSMOM.Entry/FSMOM.Entry.csproj&quot; 将迁移文件写入数据库</p>
+</li>
+<li>
+<p>删除：<br>
+dotnet ef migrations remove test_migration -p &quot;./FSMOM.EntityModel/FSMOM.EntityModel.csproj&quot; -s &quot;./FSMOM.Entry/FSMOM.Entry.csproj&quot;</p>
+</li>
+</ol>
+<!-- more -->
+]]></content>
+    </entry>
+</feed>

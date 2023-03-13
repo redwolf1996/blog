@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>试图颠覆 JavaScript 生态？亲身试用新 JS 运行时 Bun 后，我觉得未来可期 | Lost And Found</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.shaoyunxiang.cn/favicon.ico?v=1678686332981">
+<link rel="stylesheet" href="https://blog.shaoyunxiang.cn/styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="作者 | Forrest Allison
+翻译 | 核子可乐
+
+终于有人站出来，打算跟 JavaScript 生态系统正面交锋了。这家伙知道自己在干什么，而且也描绘出了干掉 JS 之后要创造的美好新世界。
+2022 年，前 Stripe 开..." />
+    <meta name="keywords" content="web前端" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.shaoyunxiang.cn">
+        <img src="https://blog.shaoyunxiang.cn/images/avatar.png?v=1678686332981" class="site-logo">
+        <h1 class="site-title">Lost And Found</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      <span style="font-size:18px;font-weight:bold;text-shadow: black 0.1em 0.1em 0.2em">好的想象力比知识更重要</span>
+<div style="padding-top:4px">京ICP备16054061号</div>
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.shaoyunxiang.cn/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">试图颠覆 JavaScript 生态？亲身试用新 JS 运行时 Bun 后，我觉得未来可期</h2>
+            <div class="post-date">2022-08-05</div>
+            
+            <div class="post-content" v-pre>
+              <p>作者 | Forrest Allison</p>
+<p>翻译 | 核子可乐</p>
+<!-- more -->
+<p>终于有人站出来，打算跟 JavaScript 生态系统正面交锋了。这家伙知道自己在干什么，而且也描绘出了干掉 JS 之后要创造的美好新世界。</p>
+<p>2022 年，前 Stripe 开发人员 Jared Sumner 发布了 Bun，一种用 Zig 编程语言开发的运行时。据我所知，Bun 最初只是种 JavaScript webserver，但在后续发展中逐渐酝酿出了全面颠覆 JS 生态系统的野心。</p>
+<p>按我个人的关注度排序，Bun 的优势主要有以下几点：</p>
+<p>据说能提供比 Node 或 Deno 更快的 JavaScript/TypeScript 运行时</p>
+<p>包管理器比 NPM 或 Yarn 都快上亿倍</p>
+<p>Browser Bundler——全面支持 tsx、jsx、css、svg 等格式，能替代从 webpack 到 react-scripts 的所有内容，而且速度仍然快如闪电</p>
+<p>提供速度极快的 webserver（替代 Express）</p>
+<p>Sqlite 客户端</p>
+<p>Bread</p>
+<p>Bun 改朝换代的思路看着非常简单粗暴——JS 有的我也要有，而且我的要更简单、更高效。这里没有小聪明、没有曲线救国，要的就是正面对抗而且样样比 JS 强。用一种低级语言，编写出运行极快的代码，这就是 Bun。</p>
+<p>Bun 还很年轻，也许还没准备好迎接那些令人头大的真实生产用例。但它确实发展迅速，所以如果 Bun 真能在几年后快速占据市场份额，我也觉得完全在情理之中。</p>
+<h3 id="1之前的方案到底有什么问题">1.之前的方案到底有什么问题？</h3>
+<p>不知道大家在实际工作中有没有编写过 JS 或 TS 生产代码，那种体验挺难受的。多数情况下，开源工具和小项目也能良好运转，但一到商业和企业级用例上就经常掉链子。而因为传统、常规的路线走不通，企业只能试遍各种办法让项目能在生产环境中正常起效。</p>
+<p>例如，TypeScript 在涉及多位开发者的项目中解决了不少老大难问题，所以只要 JS 的路子走不通，我们就能随时引入 TS 进行代码转换。这里要真心感谢微软。NPM 对大型项目和单体 repo 来说速度太慢，所以公司可能需要转向 Yarn。这里又要谢谢 Facebook。总之，我们就是在拼了命地东拼西凑，最终搞出性能勉强说得过去的成果。</p>
+<p>作者提到自己所在企业的整个单体 repo 执行 eslint 需要耗费 79 秒，所以只能单独配置，保证只对发生变更的文件执行 lint。虽然会引入更多复杂元素，但也没有办法。<br>
+总的来说，无数开发者都在用自己的办法加速 JS 工具链中的某些特定部分。比如用 Yarn 3 那疯狂的“即插即用”节点模块虚拟化速度来替代 NPM，或者用基于 JSON Schema 的请求解析器解决 Express 的低速问题。其实大多数原有工具都有类似的问题，而且它们是由 JS 开发者编写、专为 JS 开发者服务的。用 JS 编写，就等同于速度很慢……</p>
+<p>于是，一些用更快语言编写的高速工具开始流行起来。每家拥有大型 React 应用程序的企业，肯定都经历过 WebPack 构建要花掉整整一分钟的折磨。为此，他们必须转向用 Go 语言编写 esbuild。同样的，其他语言版本的 eslint 替代方案也开始出现，比如用 Rust 重写 Rome。</p>
+<p>Bun 是这种趋势的自然延续，但采取的却是自下而上的推进路径。这个项目的核心思路就是从零起步、以内置“batteries”的方式，用低级语言重写整个 JavaScript 生态系统。而且到目前为止，效果还真心不错。</p>
+<h3 id="2bun-现在可以做些什么">2.Bun 现在可以做些什么？</h3>
+<p>让解释器快起来</p>
+<p>如果 Bun 只是对所有 JS 辅助工具进行重写，我当然也很欢迎，但那样的它只能算是 Node.js 的又一个替代品。Bun 并没有这样偷懒，它努力让解释器本身也快起来。</p>
+<p>Bun 是用 Zig 编写的，而且配合苹果开发的 JavaScriptCore，类似于 Node 使用 v8。Zig 是一种新兴的低级语言，主要活跃在 C++ 占主导地位的场景。我不是低级开发者，所以没亲自用过，更多细节就留给其他技术更强的博主吧。在本文中，大家只要知道 Zig 写的代码很快就行了。至于 JavaScriptCore，它的作用跟 v8 一样，只是 v8 来自谷歌、而它来自苹果。Safari 和苹果的很多其他项目都有用到 JavaScriptCore。</p>
+<p>Bun 比 Node 到底快多少还没有定论，但据称在某些特定场景下要快得多。很多朋友可能没经历过 io.js 刚诞生的时代，总结来说，那时候一个单纯能提高解释器速度的分叉就足以撼动整个 JS 生态系统。而 Bun 的启动速度又比 Node 快得多。我自己的亲身实验是 7 毫秒左右，大概比 Node.js 快了 10 倍，所以特别适合无服务器环境和边缘计算场景。</p>
+<p>这一波颠覆依靠的不只是速度优势，Bun 还添加了不少优秀的标准库函数。例如，Bun.write() 就是用于编写文件的新函数，它会返回一个承诺，而且号称可以通过更适合的系统调用进一步加快速度。</p>
+<p>说起 Node API，Bun 目前已经能支持约 90% 的现有 Node API。Node 规模很大，其中总有一些别说没用过、可能大家听都没听过的东西（比如 new AsyncLocalStorage() ），所以能支持 90% 已经很好了。谁会运行 NPM 上的所有包呢？根本不需要，而且基本不影响我们的日常开发。</p>
+<p>顺便说一句，TypeScript 在 Bun 这边可是相当有排面，直接调用 bun my-ts-file.ts 就行。Deno 对 TS 的支持也就这个水平了。使用 Bun 对新项目进行模板化，或者把 bun-types 添加到 tsconfig 当中，IDE 中的自动补全功能就将适用于这些新函数！</p>
+<p>Bun 项目最初目标之一就是创建一种更快、更强大的 TypeScript 编译器。这个目标现在已经实现，同时被淹没在其他众多功能中。但目前，它仍然无法支持某些比较高级的 TypeScript 配置和功能，例如装饰器、tsconfig 中将多个配置合并起来的扩展功能等。</p>
+<p>替代 NPM</p>
+<p>下面来聊 Bun 最振奋人心的能力之一——替代 NPM。它真的很快，能让人人都满意那种快。</p>
+<p>在 Linux 上，bun install 的包安装速度可以达到 npm install 的 20 倍到 100 倍。在 macOS 上，也能达到 4 倍到 80 倍。</p>
+<p>我敢肯定，没 cache 快，有 cache 更快，总之就是快。</p>
+<p>之前就已经有很多方案在努力帮 NPM 提速了。比如大家熟悉的 Yarn Plug-n-Play，它的思路就是彻底放弃 node_modules 文件夹来加快包安装速度。虽然有一定效果，但在实际使用中，提速并没有那么显著，而且还需要处理大量 polyfill 和 escape-hatches 操作。能用是能用，但我个人实在是不想再用、也不打算向大家推荐。</p>
+<p>Pnpm 是另一种新兴的 NPM 替代方案，在继续使用 TypeScript 编写的同时实现了一部分智能优化。在 pnpm 中，node_modules 是通过符号链接从全局缓存中访问的，每个包都能在自己的独立时间内完成安装，无需等待其他包完成当前操作。</p>
+<p>Bun 的基本思路跟 NPM 一样，但速度却更快。它有自己的 lockfile 格式，而且其中的 node_modules 和 package.json 看起来没什么变化。如果大家对文件系统调用比较熟悉，可以结合低级访问和快速语言实现极快的安装效果，而且无需任何花哨的技巧。</p>
+<p>现在，Bun 还不提供工作空间支持，所以暂时没法对接那些期待它来拯救的大型单体 repo（我们的项目也属于这类）。但好在 Bun 正保持着迅猛的发展速度，几周前刚公布的路线图也提到了工作空间支持。</p>
+<p>请注意，大家不用全面转向 Bun 也能把它当成包管理器、转译器或者解释器。只需要选择我们需要的部分，丢弃其余的部分就行。我猜 Bun 的初步普及可能也会走这条道路，就是先当个好用的包管理器，其他的以后再说。这样接受门槛会变得更低一些。</p>
+<p>内含转译器，矛头指向 webpack、esbuild</p>
+<p>Bun 当中包含一个用于网络浏览器的转译器，这明显是把矛头指向了 webpack 和 esbuild。顺带一提，Bun 中的解析器就是 esbuild 解析器的一个 Zig 端口，轻松愉快。</p>
+<p>Bun 已经支持多种文件类型，css、svg、tsx、jsx、ts 之类的都行。JS 中的 CSS 等高级选项似乎也能在 Bun 上正常工作。</p>
+<p>由于 Bun 包含一个带有几套内置模板的项目脚手架，所以这里我们可以直接调用：bun create react my-app</p>
+<p>之后，我运行 bun dev 并在浏览器里运行了一个 react 应用程序。我猜可以把 react-scripts 直接添加到 Bun 替换过的工具列表当中。</p>
+<p>把文件扩展名从 jsx 改成 tsx，程序就立刻生效了。导入 svg，没有问题。开发模式似乎还支持 HMR，也就是前端开发者在使用 webpack 时的一大必备工具。</p>
+<p>那么，转译器方面还缺什么吗？缺的还多，毕竟生产环境的要求可不简单。首先就是最小化了，这是实际用户最希望在后续发展路线图上看到的功能。对于大型插件生态系统来说，还必须要有能够支持不同文件格式的打包工具。例如，目前.vue 文件和.scss 还没有实际落地，特别是.scss，这东西几代开发者都在用，必须赶紧实现。目前我还不确定 Bun 捆绑器的可插拔性怎么样，而且最重点的是要直接在框架之内解决问题，不要依赖大量外部开源包。</p>
+<p>其他功能——Web server 与 sqlite 客户端</p>
+<p>Bun 还把不少传统意义上的框架元素添加到了标准库当中。就个人而言，我对那些库类型功能不太感兴趣，毕竟 Node 中已经有很多适用于 http server 的功能长城了。</p>
+<p>Bun 的 webserver 看起来非常简单。Express 虽然有点落后于时代，但对大多数开发者来说仍然够用（开发团队今年还刚刚提供了对承诺的支持）。Bun server 好像跟 Cloudflare Worker 颇为相信。只要 JavaScript 生态中的其他问题逐一得到解决，也许 Bun 的开发团队会转回头好好打磨一下 webserver 吧。需要注意的是，在某些情况下，巧用系统调用可以让 Bun webserver 的速度提高一倍，特别是在文件处理过程中。</p>
+<p>至于新的 SQLite 适配器，我觉得之前 Node 中的 sqlite 实现思路有点脱离正常人的脑洞。现在大多数开发者会把旧有 sqlite 3 包跟 sqlite 打包器结合使用，借此实现对承诺的支持。Bun 的解决方案看起来更简洁，所以就算速度上没啥大优势，我也愿意用。</p>
+<h3 id="3酒香也怕巷子深">3.酒香也怕巷子深</h3>
+<p>我最担心的是，Bun 的这么多优点难以转化成对社区成员的实际吸引力。Bun 本身就是 JS 生态系统的完整替代品，这么巨大的转变一般人恐怕很难快速接受。</p>
+<p>Bun 还很年轻，目前没有完整的说明文档。对于大多数问题，我们只能查阅长长的自述文件。但创建一个 docusaurus 站点，再配合具备完整内联注释的 TypeScript 类型生成相应的 typedoc 并不困难，所以我猜这一点应该很快就能解决。</p>
+<h3 id="4其他产品对比">4.其他产品对比</h3>
+<p>服务端渲染 React 每秒 HTTP 请求数 (Linux AMD64) 对比，来自Bun官网<br>
+Deno</p>
+<p>如果你从来没听说过 Deno、也不打算了解，直接跳过这章也行。而且就个人而言，我觉得 Bun 比 Deno 更有搞头、更有前途。</p>
+<p>来自 Node 缔造者的 Deno 宣称解决了一些长期困扰开发者的老大难问题。它把 es-modules 设定成默认值，引入了第一方 TypeScript 支持（无需在发布前转译 NPM 模块）等等。但在我看来，Deno 在解决老问题的同时，也引入了不少新问题。</p>
+<p>首先，Deno 对包解析和语法做的变更过于大刀阔斧，导致没法跟原有 NPM 生态系统兼容。换言之，Deno 需要培养起自己的全新库生态。虽然 Deno 慢慢开始支持一些早期库，但我觉得一个项目的影响力会直接决定它的发展上限，所以 Deno 的边界估计也就到这了。当然也有一些变通方法，比如把 NPM 包转换成 Deno 包的 CDN，但我觉得这不是什么好招。</p>
+<p>Deno 还有不少在我看来暴露其半成品身份的问题，比如缺少 package.json。无论是从模块解析的角度来看，还是从缺少 manifest 文件出发，Deno 都不允许开发者为自己的包编写可扩展元数据。GoLang 甚至专门为此引入了 go.mod。</p>
+<p>另外，我觉得 Deno 设计中的沙箱 / 权限系统应该是正确的思路，只是粒度不够细。它位于整个项目的顶层、脱离了包层次，这意味着大型应用程序最终还是需要所有权限，于是问题又回到了原点。而且作为一家安全公司，我们对 Deno 无法保护大型应用免受供应链攻击而颇感失望。当然，Bun 也没说打算如何解决这个问题，我这里只是发泄一下自己的不满。</p>
+<p>所以总结起来：Bun 拥有远超 Deno 的发展潜力。具体原因如下：</p>
+<p>它支持现有 NPM 生态系统中的所有库，也支持大家已经编写的一切代码，甚至连 package.json 都不用改。</p>
+<p>它解决了生态系统中的几个突出问题（特别是大企业的诉求问题），而且把解决方案整合到了单一框架当中。</p>
+<p>它以人们已经熟悉的方式运行，只是速度更快。不需要改变范式，也不强求转变思路，用就是了。</p>
+<p>可以放心使用，哪怕感觉 Bun 拖慢了开发速度，我们也可以只用它的包管理器；或者说觉得 webpack 太慢，那就只用它的打包程序。</p>
+<p>它在几乎各个维度上都更快，这是种巨大的优势。从 io.js 就能看到，人们是愿意为了性能而转投阵营的。</p>
+<p>Rome</p>
+<p>如上所述，Rome 就是个验证器。Rome 的维护者们已经开始用 Rust 代替 JS 进行重写了，而且 79 秒的验证时长也有点夸张。（不骗人，我们的 eslint 就是用了 79 秒。）</p>
+<p>从路线图来看，Rome 还打算引入捆绑器、文档生成器、压缩器、类型检查器、测试框架等等。但这一切尚未完成，而 Bun 明显已经走得更远。至少 Rome 还没开始重写 Node 核心本身，所以我觉得它的影响力也就差不多这样了。</p>
+<p>总之，很多项目都发现了 Node 生态系统中的现有问题，而且各自尝试在统一的高性能框架中将其一举解决。接下来，就看谁发展得更快了。</p>
+<h3 id="5开源世界中的生态阵营">5.开源世界中的生态阵营</h3>
+<p>这里我想把视野缩小一点，通过具体案例聊聊开源世界中的生态阵营是怎么产生的。</p>
+<p>相信很多 Node 开发者都知道 Jest 是怎样力压 Mocha 测试框架，一路迅猛崛起的。Mocha 想当年也是人们首选的测试运行程序，效果不错而且语法优秀，但只要涉及更复杂的需求或者断言，就得引入其他模块和插件。好在有了社区协作，插件也不算太难找。总之，开发者需要具备更广泛的知识才能引入相应的库。</p>
+<p>后来 Facebook 搞出了 Jest，一套内含“batteries”的测试框架。它借鉴了 Mocha 语法和库，并把一切整合到了单一框架中。Jest 什么都能解决，从伪造时间到需求的检测和模拟。Jest 也有扩展空间，但我在实际工作中就用过一次。大部分概念验证和设计都是由 Mocha 承担的，作为后来者的 Jest 只是把成果统一了起来并使其变得更易于访问。虽然 Mocha 也不乏铁杆粉丝，但 Jest 确实更受欢迎。</p>
+<p>开源世界中有很多这样的案例。首创解决方案拿下先发优势，而后续一旦增长乏力，就会有热心的开发商把功能整合起来。这也让我想到了 Linux 大家族还未统一时的 systemd。如今，systemd 几乎可以管理大多数 Linux 发行版上的所有内容，而 Bun 也许会以同样的方式席卷整个 JavaScript 世界。</p>
+<p>我意识到从开源的角度来看，这种合并和统一似乎与开源精神相悖，但用大量库实现简单需求确实已经成为折磨开发者们的痛点。而且如果每个库都有相应的维护团队，那恶意黑客通过简单的伪造邮件域就能实施供应链攻击。我们不想这样，但现实就是如此残酷。老手尚且容易中招，更遑论刚接触大量名称、还不熟悉种种语言的新人了。所以从务实的角度出发，我觉得很多朋友应该跟我一样，并不觉得把更多常用功能引入标准库、将多种开发工具整合进统一框架属于历史的倒退。</p>
+<h3 id="6结束语">6.结束语</h3>
+<p>截至 2022 年 7 月，Bun 还是没有做好进军生产环境的准备，但我强烈建议大家自己装上试一试。整个流程非常便捷，而且我觉得现在的 Bun 已经足够应付小型子项目或者公司里的简单内部仪表板了。</p>
+<p>我不敢说 Bun 在未来几年能否甚至如何重塑 JavaScript 的面貌，但我真心对它的发展充满期待。</p>
+<blockquote>
+<p>https://www.lunasec.io/docs/blog/bun-first-look/</p>
+</blockquote>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://blog.shaoyunxiang.cn/tag/lae0w0OJY/" class="tag">
+                    web前端
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.shaoyunxiang.cn/post/ji-yi-ci-vagrant-an-zhuang-xu-ni-ji-bing-ji-cheng-docker-de-guo-cheng/">
+                  <h3 class="post-title">
+                    记一次vagrant安装虚拟机并集成docker的过程
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+
+  </body>
+</html>

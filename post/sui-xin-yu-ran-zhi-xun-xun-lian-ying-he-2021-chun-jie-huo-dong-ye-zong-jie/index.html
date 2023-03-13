@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>随心瑜-燃脂训训练营和2021春节活动页总结 | Lost And Found</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.shaoyunxiang.cn/favicon.ico?v=1678686332981">
+<link rel="stylesheet" href="https://blog.shaoyunxiang.cn/styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="
+以下是来新公司最新做的两个微信H5活动页面前端部分一些技术点的总结
+
+
+微信公众号授权思路
+1.创建一个auth授权页面，并创建一个路由指向它，在这个页面发起一个腾讯提供的get请求，带上redirect_url参数，此url指向该页面本..." />
+    <meta name="keywords" content="" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.shaoyunxiang.cn">
+        <img src="https://blog.shaoyunxiang.cn/images/avatar.png?v=1678686332981" class="site-logo">
+        <h1 class="site-title">Lost And Found</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      <span style="font-size:18px;font-weight:bold;text-shadow: black 0.1em 0.1em 0.2em">好的想象力比知识更重要</span>
+<div style="padding-top:4px">京ICP备16054061号</div>
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.shaoyunxiang.cn/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">随心瑜-燃脂训训练营和2021春节活动页总结</h2>
+            <div class="post-date">2021-02-03</div>
+            
+            <div class="post-content" v-pre>
+              <blockquote>
+<p><strong>以下是来新公司最新做的两个微信H5活动页面前端部分一些技术点的总结</strong></p>
+</blockquote>
+<ul>
+<li><strong>微信公众号授权思路</strong><br>
+1.创建一个auth授权页面，并创建一个路由指向它，在这个页面发起一个腾讯提供的get请求，带上redirect_url参数，此url指向该页面本身，发起请求后腾讯回调该链接的时候会返回一个code的参数（单页应用，返回时获取code需做特殊处理才能从返回的链接中解析出code，正常的获取参数可以不必自己写方法获取链接参数直接用框架路由自带的方法，比如vue的this.$router.query.code，如下所示）</li>
+</ul>
+<pre><code>export function getQueryArg(attr, splitChar) {
+  var query = window.location.search,
+    splitChar = splitChar || &quot;&amp;&quot;,
+    attrArr = [],
+    attrObj = {};
+
+  query = query.replace(/^\?/, &quot;&quot;);
+  attrArr = query.split(splitChar);
+  for (var i = attrArr.length - 1; i &gt;= 0; i--) {
+    attrObj[attrArr[i].split(&quot;=&quot;)[0]] = attrArr[i].split(&quot;=&quot;)[1];
+  }
+
+  return attrObj[attr] || &quot;&quot;;
+}
+</code></pre>
+<p>2.获取code之后接着就拿着这个code去请求后端接口获取token(这一步是真正的登录以获取用户讯息并将它保存在本地以保持状态)</p>
+<pre><code>    this.$request
+        .post(&quot;/yogastar/api/wxmpcloginbycode&quot;, {
+          code: getQueryArg(&quot;code&quot;)
+        })
+        .then(re =&gt; {
+          localStorage.setItem(&quot;access_token&quot;, re.data.access_token);
+          localStorage.setItem(&quot;subscribe&quot;, re.data.subscribe);
+          if (localStorage.getItem(&quot;beforeUrl&quot;))
+            location.href = localStorage.getItem(&quot;beforeUrl&quot;);
+        });
+</code></pre>
+<ol start="3">
+<li>本地如何调试公众号授权避免无法授权的烦恼？<br>
+1）首先是要在微信开发者工具种操作<br>
+2）方法一是去测试环境登录，然后在本地环境种植一个一模一样的token，此方法的问题是每次token变了都要手动去操作<br>
+3）方法二是做内网穿透、本地绑定host到一个真实的域名，并且本地要搭建服务器的环境，才能完全模拟测试环境，缺点是复杂繁琐，还要重新申请一个域名防止跟测试、线上环境有冲突<br>
+4）方法三是有个小技巧，建立一个auth页面2，本地调试的时候先直接访问这个测试环境的页面，获取code后再跳转的本地的localhost页面，优点是省去了手动操作的麻烦，也不会出现git老是提交无用代码到gitlab上，避免了一些不必要的错误且不会影响测试和线上环境，缺点是多了一次跳转，速度优点慢</li>
+</ol>
+<pre><code>// 中介的auth页面
+  created() {
+    if (location.href.indexOf('code=') != -1) {
+      let code = getQueryArg('code')
+      location.href = `http://localhost:7002/#/oauth?code=${code}`
+    } else {
+      getAuthLink({ redirect_url: location.href }).then((re) =&gt; {
+        location.replace(re.data.url)
+      })
+    }
+  },
+</code></pre>
+<pre><code>// 实际的auth页面
+  created() {
+    if (location.href.indexOf('code=') != -1) {
+      let code = getQueryArg('code') || this.$route.query.code
+      getTokenByCode({ code }).then((re) =&gt; {
+        localStorage.setItem('access_token', re.data.access_token)
+        localStorage.setItem('subscribe', re.data.subscribe)
+        localStorage.setItem('user_info', JSON.stringify(re.data))
+        if (!!localStorage.getItem('beforeUrl')) {
+          location.replace(localStorage.getItem('beforeUrl'))
+        } else {
+          this.$router.push({ path: `/` })
+        }
+      })
+    } else {
+      getAuthLink({ redirect_url: location.href }).then((re) =&gt; {
+        location.replace(re.data.url)
+      })
+    }
+  },
+</code></pre>
+<ul>
+<li>
+<p><strong>img元素底部留白的问题</strong><br>
+原因是img元素是行内元素，设置它的vertical-align: middle/top之后，底部的空白会消失</p>
+</li>
+<li>
+<p><strong>环境变量问题</strong><br>
+不必手动更改环境变量，在package.json中设置好命令，利用node的process.env结合vue-cli实现在不用环境下应用不用的环境变量</p>
+</li>
+<li>
+<p><strong>图片压缩问题</strong><br>
+在线的可以使用tinypng，mac本地可以使用图压批量进行处理</p>
+</li>
+<li>
+<p><strong>垂直方向滚动的气泡</strong><br>
+本质上就是横向的swiper变成纵向，但是swiper默认的是块级元素是一行不能在里面加两行数据，需要每两行去滚动的话可以用行内元素加上transform变相解决(目前能想到的方法)</p>
+</li>
+<li>
+<p><strong>春节活动首页的弹幕</strong><br>
+使用vue-baberage，然后setTimeout每隔几十秒去请求弹幕，但是要弹幕长时间的不卡需要及时的清除定时器和老弹幕</p>
+</li>
+</ul>
+<pre><code>    getBarrageList() {
+      this.$request
+        .post('/yogastar/api/wxmpcbarrage', {
+          scene: 'newyear',
+          number: 20,
+        })
+        .then((re) =&gt; {
+          const that = this
+          for (let i = 0; i &lt; re.data.length; i++) {
+            let t = setTimeout(function() {
+              that.addToBarrageList(
+                re.data[i].id,
+                re.data[i].headimgurl,
+                re.data[i].info
+              )
+            }, 1000 * i + Math.floor(Math.random() * 10000 + 1))
+            this.timers.push(t)
+          }
+        })
+    }
+</code></pre>
+<ul>
+<li>
+<p>animate.css的源代码可以从中直接摘取来用，有的时候没有必要完整引入</p>
+</li>
+<li>
+<p><strong>翻卡片的组件代码如下</strong></p>
+</li>
+</ul>
+<pre><code>&lt;template&gt;
+  &lt;div v-bind:class=&quot;flipped ? 'flip-container flipped' : 'flip-container'&quot;&gt;
+    &lt;div class=&quot;flipper&quot;&gt;
+      &lt;div class=&quot;front&quot;&gt;
+        &lt;slot name=&quot;front&quot;&gt;&lt;/slot&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;back&quot;&gt;
+        &lt;slot name=&quot;back&quot;&gt;&lt;/slot&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  name: 'FlipCard',
+  data() {
+    return {
+      flipped: false,
+    }
+  },
+  methods: {
+    reset() {
+      this.flipped = false
+    },
+    reverse() {
+      this.flipped = true
+    },
+  },
+}
+&lt;/script&gt;
+
+&lt;style type=&quot;text/css&quot; scoped&gt;
+i.frontFlipBtn,
+i.backFlipBtn {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  color: #ffffff;
+}
+i.backFlipBtn {
+  -webkit-transform: rotateY(-180deg);
+  -moz-transform: rotateY(-180deg);
+  -o-transform: rotateY(-180deg);
+  -ms-transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
+}
+.flip-container {
+  -webkit-perspective: 1000;
+  -moz-perspective: 1000;
+  -o-perspective: 1000;
+  perspective: 1000;
+}
+.flip-container {
+  min-height: 120px;
+}
+.flipper {
+  -moz-transform: perspective(1000px);
+  -moz-transform-style: preserve-3d;
+  position: relative;
+}
+.front,
+.back {
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transition: 0.6s;
+  -webkit-transform-style: preserve-3d;
+  -moz-transition: 0.6s;
+  -moz-transform-style: preserve-3d;
+  -o-transition: 0.6s;
+  -o-transform-style: preserve-3d;
+  -ms-transition: 0.6s;
+  -ms-transform-style: preserve-3d;
+  transition: 0.6s;
+  transform-style: preserve-3d;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.back {
+  -webkit-transform: rotateY(-180deg);
+  -moz-transform: rotateY(-180deg);
+  -o-transform: rotateY(-180deg);
+  -ms-transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
+  position: absolute;
+}
+.flip-container.flipped .back {
+  -webkit-transform: rotateY(0deg);
+  -moz-transform: rotateY(0deg);
+  -o-transform: rotateY(0deg);
+  -ms-transform: rotateY(0deg);
+  transform: rotateY(0deg);
+}
+.flip-container.flipped .front {
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+.front {
+  z-index: 2;
+}
+&lt;/style&gt;
+
+</code></pre>
+<ul>
+<li><strong>复杂的、花里胡俏的但是又没有交互的动画</strong><br>
+可以用AE制作，然后导出json再去<a href="https://github.com/airbnb/lottie-web">github下载lottie-web</a>这个库去解析，如果不会制作动画，也可以去这个网站搜索<a href="https://lottiefiles.com/">做好的json</a>或者在线制作下载</li>
+</ul>
+<!-- more -->
+
+            </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.shaoyunxiang.cn/post/zhi-bo-ke-hu-duan-dan-mu-si-lu/">
+                  <h3 class="post-title">
+                    直播客户端弹幕思路
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+
+  </body>
+</html>

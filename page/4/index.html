@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Lost And Found</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.shaoyunxiang.cn/favicon.ico?v=1678686332981">
+<link rel="stylesheet" href="https://blog.shaoyunxiang.cn/styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="&lt;span style=&#34;font-size:18px;font-weight:bold;text-shadow: black 0.1em 0.1em 0.2em&#34;&gt;好的想象力比知识更重要&lt;/span&gt;
+&lt;div style=&#34;padding-top:4px&#34;&gt;京ICP备16054061号&lt;/div&gt;">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.shaoyunxiang.cn">
+        <img src="https://blog.shaoyunxiang.cn/images/avatar.png?v=1678686332981" class="site-logo">
+        <h1 class="site-title">Lost And Found</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      <span style="font-size:18px;font-weight:bold;text-shadow: black 0.1em 0.1em 0.2em">好的想象力比知识更重要</span>
+<div style="padding-top:4px">京ICP备16054061号</div>
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.shaoyunxiang.cn/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://blog.shaoyunxiang.cn/post/wei-shi-me-commonjs-he-es-module-bu-neng-gong-cun/">
+                  <h2 class="post-title">为什么 CommonJS 和 ES Module 不能共存</h2>
+                </a>
+                <div class="post-date">
+                  2022-07-14
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://blog.shaoyunxiang.cn/post/yarn-an-zhuang-yi-lai-wang-luo-wen-ti/">
+                  <h2 class="post-title">yarn安装依赖网络问题</h2>
+                </a>
+                <div class="post-date">
+                  2022-07-14
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://blog.shaoyunxiang.cn/post/node-sass-an-zhuang-zong-shi-chu-wen-ti-de-jie-jue-ban-fa/">
+                  <h2 class="post-title">node-sass安装总是出问题的解决办法</h2>
+                </a>
+                <div class="post-date">
+                  2022-07-14
+                </div>
+                <div class="post-abstract">
+                  <ol>
+<li>翻墙</li>
+<li>用 dart-sass代替node-sass</li>
+<li>如果不想更换package.json内的node-sass包名 又想将其替换成node-sass 可以使用如下的办法<br>
+yarn add --dev node-sass@npm:dart-sass<br>
+<img src="https://blog.shaoyunxiang.cn/post-images/1657789430443.png" alt="" loading="lazy"></li>
+</ol>
+
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://blog.shaoyunxiang.cn/post/vite2xvue3xts4xvue-router4xvuex4x-shi-jian-keng-zong-jie/">
+                  <h2 class="post-title">vite2.x+vue3.x+ts4.x+vue-router4.x+vuex4.x实践坑总结</h2>
+                </a>
+                <div class="post-date">
+                  2022-07-14
+                </div>
+                <div class="post-abstract">
+                  <p>###1.配置别名alias</p>
+<pre><code>1.需要在vite.config.ts下面做如下配置
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import path from 'path'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+    },
+  },
+  plugins: [vue()],
+})
+
+2.由于使用了ts所以在ts下面也要配置相应的path
+{
+  &quot;compilerOptions&quot;: {
+    &quot;target&quot;: &quot;esnext&quot;,
+    &quot;module&quot;: &quot;esnext&quot;,
+    &quot;moduleResolution&quot;: &quot;node&quot;,
+    &quot;strict&quot;: true,
+    &quot;jsx&quot;: &quot;preserve&quot;,
+    &quot;sourceMap&quot;: true,
+    &quot;resolveJsonModule&quot;: true,
+    &quot;esModuleInterop&quot;: true,
+    &quot;lib&quot;: [&quot;esnext&quot;, &quot;dom&quot;],
+    &quot;paths&quot;: {
+      &quot;@/*&quot;: [&quot;./src/*&quot;]
+    }
+  },
+  &quot;include&quot;: [&quot;src/**/*.ts&quot;, &quot;src/**/*.d.ts&quot;, &quot;src/**/*.tsx&quot;, &quot;src/**/*.vue&quot;]
+}
+
+3.然后可以在文件中这样引用
+import { useCount } from '@/hooks/useCount'
+import logo from '@/assets/logo.png'
+import test from '@/utils/test'
+</code></pre>
+
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://blog.shaoyunxiang.cn/post/js-bi-xu-jia-fen-hao-de-liang-chong-qing-kuang/">
+                  <h2 class="post-title">js必须加分号的两种情况</h2>
+                </a>
+                <div class="post-date">
+                  2022-07-14
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://blog.shaoyunxiang.cn/post/css-zhong-ru-he-she-zhi-fu-yuan-su-tou-ming-du-bu-ying-xiang-zi-yuan-su-tou-ming-du/">
+                  <h2 class="post-title">CSS中如何设置父元素透明度不影响子元素透明度</h2>
+                </a>
+                <div class="post-date">
+                  2022-07-14
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://blog.shaoyunxiang.cn/post/git-jin-zhi-wen-jian-ti-jiao/">
+                  <h2 class="post-title">git禁止文件提交</h2>
+                </a>
+                <div class="post-date">
+                  2022-07-14
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://blog.shaoyunxiang.cn/post/wang-ke-xiang-mu-hu-dong-lian-mai-gong-neng-kai-fa-ji-lu/">
+                  <h2 class="post-title">网课项目互动连麦功能开发记录</h2>
+                </a>
+                <div class="post-date">
+                  2022-07-14
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://blog.shaoyunxiang.cn/post/qian-duan-xian-shang-huan-jing-geng-xin-dai-ma-hou-yong-hu-fang-wen-bao-cuo-wen-ti/">
+                  <h2 class="post-title">前端线上环境更新代码后 用户访问报错问题</h2>
+                </a>
+                <div class="post-date">
+                  2022-07-14
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://blog.shaoyunxiang.cn/post/dan-ye-ying-yong-de-qi-zhong-yi-ge-you-shi/">
+                  <h2 class="post-title">单页应用的其中一个优势</h2>
+                </a>
+                <div class="post-date">
+                  2022-07-14
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+            </article>
+          
+
+          <div class="pagination-container">
+  
+    <a href="https://blog.shaoyunxiang.cn/page/3/" class="prev"><i class="icon-arrow-ios-back-outline"></i> 上一页</a>
+  
+  
+    <a href="https://blog.shaoyunxiang.cn/page/5/" class="next">下一页 <i class="icon-arrow-ios-forward-outline"></i></a>
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+
+  </body>
+</html>

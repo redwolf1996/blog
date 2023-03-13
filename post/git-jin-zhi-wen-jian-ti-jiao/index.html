@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>git禁止文件提交 | Lost And Found</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.shaoyunxiang.cn/favicon.ico?v=1678686332981">
+<link rel="stylesheet" href="https://blog.shaoyunxiang.cn/styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="命令：git update-index --assume-unchanged 文件名
+
+作用：忽略文件的改动，但是不加入.gitignore 文件中，这样可以达到仅在本地目录中忽略，不影响其他团队成员的工作。
+
+命令：git update-..." />
+    <meta name="keywords" content="Git" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.shaoyunxiang.cn">
+        <img src="https://blog.shaoyunxiang.cn/images/avatar.png?v=1678686332981" class="site-logo">
+        <h1 class="site-title">Lost And Found</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      <span style="font-size:18px;font-weight:bold;text-shadow: black 0.1em 0.1em 0.2em">好的想象力比知识更重要</span>
+<div style="padding-top:4px">京ICP备16054061号</div>
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.shaoyunxiang.cn/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">git禁止文件提交</h2>
+            <div class="post-date">2022-07-14</div>
+            
+            <div class="post-content" v-pre>
+              <pre><code>命令：git update-index --assume-unchanged 文件名
+
+作用：忽略文件的改动，但是不加入.gitignore 文件中，这样可以达到仅在本地目录中忽略，不影响其他团队成员的工作。
+
+命令：git update-index --no-assume-unchanged 文件名
+
+作用：上一个命令的逆操作，重新追踪文件改动
+
+上次学会使用update-index --assume-unchanged后，大量用update-index --assume-unchanged来忽略文件，等到项目结束要提交代码时才疯了，哪些文件被我忽略了？由于之前没有做记录，忽略的文件完全没有印象，只好想办法啦，目前只找到下面这个方法：
+
+git ls-files -v | grep '^h'
+
+可以将所有被update-index --assume-unchanged关闭了跟踪的文件。但文件太多了，不想手工一条一条敲，只好先将路径提取出来再与命令拼装，如下：
+
+git update-index --no-assume-unchanged $(git ls-files)
+
+或者
+
+git ls-files -v|grep '^h' |awk '{print $2}' |xargs git update-index --no-assume-unchanged
+
+
+
+1、编辑用户目录下的.zshrc文件，即vi ~/.zshrc
+
+2、在.zshrc中添加想要添加的快捷方式。
+
+alias gdisable='git update-index --assume-unchanged'
+
+alias genable='git update-index --no-assume-unchanged'
+
+#d
+
+disable = update-index --assume-unchanged
+
+enable = update-index --no-assume-unchanged
+
+disabled = !git ls-files -v | grep \&quot;^[a-z]\&quot;
+
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://blog.shaoyunxiang.cn/tag/ZjzhhpGI-/" class="tag">
+                    Git
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.shaoyunxiang.cn/post/wang-ke-xiang-mu-hu-dong-lian-mai-gong-neng-kai-fa-ji-lu/">
+                  <h3 class="post-title">
+                    网课项目互动连麦功能开发记录
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+
+  </body>
+</html>

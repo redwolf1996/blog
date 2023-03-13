@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>TypeScript内置泛型工具(Omit、Pick、Partial、Required) | Lost And Found</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.shaoyunxiang.cn/favicon.ico?v=1678686332981">
+<link rel="stylesheet" href="https://blog.shaoyunxiang.cn/styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="
+ts(TypeScript)常用语法
+
+
+比如有一个联系人列表
+
+export interface Contact{
+  name: string; // 姓名
+  phone?: string; // 手机号
+  email: stri..." />
+    <meta name="keywords" content="" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.shaoyunxiang.cn">
+        <img src="https://blog.shaoyunxiang.cn/images/avatar.png?v=1678686332981" class="site-logo">
+        <h1 class="site-title">Lost And Found</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      <span style="font-size:18px;font-weight:bold;text-shadow: black 0.1em 0.1em 0.2em">好的想象力比知识更重要</span>
+<div style="padding-top:4px">京ICP备16054061号</div>
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.shaoyunxiang.cn/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">TypeScript内置泛型工具(Omit、Pick、Partial、Required)</h2>
+            <div class="post-date">2022-11-23</div>
+            
+            <div class="post-content" v-pre>
+              <blockquote>
+<p>ts(TypeScript)常用语法</p>
+</blockquote>
+<ul>
+<li>比如有一个联系人列表</li>
+</ul>
+<pre><code>export interface Contact{
+  name: string; // 姓名
+  phone?: string; // 手机号
+  email: string; // 邮箱
+  avatar: string; // 头像
+  userid: string; // id
+}
+</code></pre>
+<ol>
+<li>Omit去除类型中某些项（官方提供）<br>
+现在需要定义一个新的数据类型，新的联系人列表没有邮箱项<br>
+可以使用Omit，其源码如下:</li>
+</ol>
+<pre><code>/**
+ * Construct a type with the properties of T except for those in type K.
+ */
+type Omit&lt;T, K extends keyof any&gt; = Pick&lt;T, Exclude&lt;keyof T, K&gt;&gt;;
+</code></pre>
+<ul>
+<li>Omit会构造一个除类型K外具有T性质的类型<br>
+可以看出需Omit要两个参数，Omit&lt;type,string&gt;：<br>
+参数：第一个为继承的type类型，第二个为想要的key的字符串，多个字符串用|分开<br>
+使用也很简单：<br>
+去除单个，原始类型为联系人列表，新数据数据为没有邮箱项的联系人列表</li>
+</ul>
+<pre><code>export type OmitEmailContact = Omit&lt;Contact, 'email' &gt;;
+OmitEmailContact{
+  name: string;
+  phone?: string; 
+  avatar: string;
+  userid: string;
+}
+</code></pre>
+<ul>
+<li>去除多个，原始类型为联系人列表，新数据数据为没有邮箱项与头像的联系人列表</li>
+</ul>
+<pre><code>export type OmitEmailAvatarContact = Omit&lt;Contact, 'email' | 'avatar'&gt;;
+OmitEmailAvatarContact {
+  name: string;
+  phone?: string; 
+  userid: string;
+}
+</code></pre>
+<ol start="2">
+<li>Pick选取类型中指定类型（官方提供）</li>
+</ol>
+<ul>
+<li>现在联系人列表只要姓名电话即可<br>
+从T中选择一组属性，将它们在K中联合</li>
+</ul>
+<pre><code>type Pick&lt;T, K extends keyof T&gt; = {
+    [P in K]: T[P];
+};
+</code></pre>
+<ul>
+<li>使用如下</li>
+</ul>
+<pre><code>export interface ContactPick extends Pick&lt;Contact, 'name' | 'phone'&gt; {}
+ContactPick {
+  name: string;
+  phone?: string; 
+}
+</code></pre>
+<ol start="3">
+<li>Partial将类型中所有选项变为可选，即加上？（官方提供）</li>
+</ol>
+<ul>
+<li>可以使用Partial，其源码如下</li>
+</ul>
+<pre><code>/**
+ * Make all properties in T optional
+ */
+type Partial&lt;T&gt; = {
+    [P in keyof T]?: T[P];
+};
+</code></pre>
+<ul>
+<li>使用如下</li>
+</ul>
+<pre><code>export interface PartialContact= Partial&lt;Contact&gt;
+PartialContact{
+  name?: string; // 姓名
+  phone?: string; // 手机号
+  email?: string; // 邮箱
+  avatar?: string; // 头像
+  userid?: string; // id
+}
+</code></pre>
+<ol start="4">
+<li>Required将类型中所有选项变为必选，去除所有？（官方提供）</li>
+</ol>
+<ul>
+<li>可以使用Required，其源码如下</li>
+</ul>
+<pre><code>/**
+ * Make all properties in T required
+ */
+type Required&lt;T&gt; = {
+    [P in keyof T]-?: T[P];
+};
+</code></pre>
+<ul>
+<li>使用如下</li>
+</ul>
+<pre><code>export interface RequiredContact= Required&lt;Contact&gt;
+RequiredContact{
+  name: string; // 姓名
+  phone: string; // 手机号
+  email: string; // 邮箱
+  avatar: string; // 头像
+  userid: string; // id
+}
+</code></pre>
+
+            </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.shaoyunxiang.cn/post/es6-yi-ge-shi-yong-de-yu-fa-tang-yun-suan-fu/">
+                  <h3 class="post-title">
+                    ES6--一个实用的语法糖运算符【？？】
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+
+  </body>
+</html>

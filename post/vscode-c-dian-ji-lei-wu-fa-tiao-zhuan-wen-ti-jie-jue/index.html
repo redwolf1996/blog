@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>vscode c# 点击类无法跳转问题解决 | Lost And Found</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.shaoyunxiang.cn/favicon.ico?v=1678686332981">
+<link rel="stylesheet" href="https://blog.shaoyunxiang.cn/styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="
+
+安装微软官方C#插件后，更改设置，打开反编译选项
+
+
+
+按 ctrl/command + shift + p 输入 「OmniSharp: Select Project」
+
+
+按理说如果项目只有一个sln文件，安装插件后会自动分析文件，..." />
+    <meta name="keywords" content="vscode" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.shaoyunxiang.cn">
+        <img src="https://blog.shaoyunxiang.cn/images/avatar.png?v=1678686332981" class="site-logo">
+        <h1 class="site-title">Lost And Found</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      <span style="font-size:18px;font-weight:bold;text-shadow: black 0.1em 0.1em 0.2em">好的想象力比知识更重要</span>
+<div style="padding-top:4px">京ICP备16054061号</div>
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.shaoyunxiang.cn/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">vscode c# 点击类无法跳转问题解决</h2>
+            <div class="post-date">2023-02-14</div>
+            
+            <div class="post-content" v-pre>
+              <ol>
+<li>
+<p>安装微软官方C#插件后，更改设置，打开反编译选项<br>
+<img src="https://blog.shaoyunxiang.cn/post-images/1676362979902.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p>按 <code>ctrl/command + shift + p</code> 输入 「OmniSharp: Select Project」</p>
+</li>
+<li>
+<p>按理说如果项目只有一个sln文件，安装插件后会自动分析文件，但是如果有多个sln文件多个csproj文件那么我们需要手动指定，如下图所示：<br>
+<img src="https://blog.shaoyunxiang.cn/post-images/1676363285748.png" alt="" loading="lazy"><br>
+选择后vscode的底部状态栏会出现下图所示的过程<br>
+<img src="https://blog.shaoyunxiang.cn/post-images/1676363391811.png" alt="" loading="lazy"><br>
+等分析完毕就可以实现点击跳转了：<br>
+<img src="https://blog.shaoyunxiang.cn/post-images/1676363500358.png" alt="" loading="lazy"><br>
+<img src="https://blog.shaoyunxiang.cn/post-images/1676363507602.png" alt="" loading="lazy"></p>
+</li>
+</ol>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://blog.shaoyunxiang.cn/tag/iNnhs6mjM/" class="tag">
+                    vscode
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.shaoyunxiang.cn/post/git-shan-chu-fen-zhi/">
+                  <h3 class="post-title">
+                    git删除分支
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+
+  </body>
+</html>

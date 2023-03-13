@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>网课项目互动连麦功能开发记录 | Lost And Found</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.shaoyunxiang.cn/favicon.ico?v=1678686332981">
+<link rel="stylesheet" href="https://blog.shaoyunxiang.cn/styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="
+
+腾讯的trtc文档有很多坑，比如引入的库要用在vue项目里需要挂在在window对象上面才会对库里的方法生效
+
+
+
+很多方法的调用有个先后顺序的问题都要放在promise的then后面处理，文档没有标明也没有用async和await的形..." />
+    <meta name="keywords" content="项目总结" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.shaoyunxiang.cn">
+        <img src="https://blog.shaoyunxiang.cn/images/avatar.png?v=1678686332981" class="site-logo">
+        <h1 class="site-title">Lost And Found</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      <span style="font-size:18px;font-weight:bold;text-shadow: black 0.1em 0.1em 0.2em">好的想象力比知识更重要</span>
+<div style="padding-top:4px">京ICP备16054061号</div>
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.shaoyunxiang.cn/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">网课项目互动连麦功能开发记录</h2>
+            <div class="post-date">2022-07-14</div>
+            
+            <div class="post-content" v-pre>
+              <ul>
+<li>
+<p>腾讯的trtc文档有很多坑，比如引入的库要用在vue项目里需要挂在在window对象上面才会对库里的方法生效<br>
+<img src="https://blog.shaoyunxiang.cn/post-images/1657788346778.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p>很多方法的调用有个先后顺序的问题都要放在promise的then后面处理，文档没有标明也没有用async和await的形式<br>
+<img src="https://blog.shaoyunxiang.cn/post-images/1657788367764.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p>拉一路或者两路流的时候出现 can not read proporty 'sdp' of null<br>
+<a href="https://time.geekbang.org/column/article/111337">SDP解释链接</a><br>
+SDP（Session Description Protocal）说直白点就是用文本描述的各端（PC 端、Mac 端、Android 端、iOS 端等）的能力。这里的能力指的是各端所支持的音频编解码器是什么，这些编解码器设定的参数是什么，使用的传输协议是什么，以及包括的音视频媒体是什么等等<br>
+-- ps：升级trtc的sdk 从4.7.0到4.7.1就好了</p>
+</li>
+<li>
+<p>本地的样式是好的，到了测试环境构建后的样式乱了，原因是因为没有加scoped作用域，其他组件的样式放到全局样式去影响到了当前组件了，所以全局样式不要放在子组件里，单独放一个全局的css，子组件必须要加作用域</p>
+</li>
+<li>
+<p>老师停止和学生连麦后，学生端不仅要断开推流，如果不切换学生的角色，则腾讯云管理后台还会一直有学生的流</p>
+</li>
+</ul>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://blog.shaoyunxiang.cn/tag/4BKe4Lh51/" class="tag">
+                    项目总结
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.shaoyunxiang.cn/post/qian-duan-xian-shang-huan-jing-geng-xin-dai-ma-hou-yong-hu-fang-wen-bao-cuo-wen-ti/">
+                  <h3 class="post-title">
+                    前端线上环境更新代码后 用户访问报错问题
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+
+  </body>
+</html>
